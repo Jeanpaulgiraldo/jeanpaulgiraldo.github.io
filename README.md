@@ -1,1 +1,1 @@
-jeanpaulgiraldo.github.io
+-jeanpaulgiraldo.github.io
