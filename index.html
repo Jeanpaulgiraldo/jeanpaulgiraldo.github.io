@@ -24,7 +24,6 @@
             --accent-vivid: #0071e3; 
         }
 
-        /* FIX: Prevenir scroll horizontal y espacio blanco en móviles */
         html, body {
             max-width: 100vw !important;
             overflow-x: hidden !important;
@@ -38,7 +37,7 @@
         }
 
         /* ----------------------------------------------------------- */
-        /* NAVBAR & EFECTO SHINE PARA EL NOMBRE */
+        /* NAVBAR & EFECTO SHINE */
         /* ----------------------------------------------------------- */
         .navbar {
             background-color: rgba(22, 14, 64, 0.85) !important; 
@@ -53,7 +52,6 @@
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
         }
         
-        /* SHINE ANIMATION */
         .navbar-brand { 
             font-weight: 800; 
             letter-spacing: -0.5px; 
@@ -65,12 +63,8 @@
             animation: textShine 4s linear infinite;
             transition: transform 0.3s ease;
         }
-        .navbar-brand:hover {
-            transform: scale(1.05);
-        }
-        @keyframes textShine {
-            to { background-position: 200% center; }
-        }
+        .navbar-brand:hover { transform: scale(1.05); }
+        @keyframes textShine { to { background-position: 200% center; } }
 
         .nav-link { color: rgba(255, 255, 255, 0.8) !important; font-size: 0.95rem; font-weight: 400; transition: color 0.2s, transform 0.2s; }
         .nav-link:hover { color: white !important; transform: translateY(-1px); }
@@ -85,33 +79,14 @@
             clip-path: polygon(0 0, 100% 0, 100% calc(100% - 60px), 0 100%);
             position: relative;
         }
+        @keyframes gradientLiquid { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
-        @keyframes gradientLiquid {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* ----------------------------------------------------------- */
-        /* GLOW MAGNÉTICO PARA EL NOMBRE PRINCIPAL */
-        /* ----------------------------------------------------------- */
         .name-title { 
-            font-size: 3.5rem; 
-            font-weight: 700; 
-            letter-spacing: -0.04em; 
-            line-height: 1.1; 
-            margin-bottom: 20px; 
-            min-height: 1.2em; 
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), text-shadow 0.4s ease;
-            display: inline-block;
+            font-size: 3.5rem; font-weight: 700; letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 20px; min-height: 1.2em; 
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), text-shadow 0.4s ease; display: inline-block;
         }
-        .name-title:hover {
-            transform: scale(1.03);
-            text-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
-        }
-        
+        .name-title:hover { transform: scale(1.03); text-shadow: 0 10px 30px rgba(255, 255, 255, 0.3); }
         .hero-subtitle { font-size: 1.5rem; color: rgba(255, 255, 255, 0.85); font-weight: 400; max-width: 800px; margin: 0 auto; letter-spacing: -0.015em; height: 70px; }
-
         #hero-buttons { opacity: 0; transform: translateY(20px); transition: opacity 1s ease, transform 1s cubic-bezier(0.16, 1, 0.3, 1); }
         #hero-buttons.show { opacity: 1; transform: translateY(0); }
         
@@ -123,79 +98,90 @@
         @keyframes border-blink { 0%, 100% { border-color: transparent; } 50% { border-color: white; } }
         @keyframes opacity-blink { 0%, 100% { opacity: 0; } 50% { opacity: 1; } }
 
-        /* Profile Img */
-        .profile-img {
-            width: 280px !important; height: 280px !important; object-fit: cover; 
-            border-radius: 50%; border: 5px solid white;
-            box-shadow: 0 20px 40px rgba(37, 25, 100, 0.15); 
-            display: block; margin-left: auto; margin-right: auto;
-            will-change: transform;
-        }
+        .profile-img { width: 280px !important; height: 280px !important; object-fit: cover; border-radius: 50%; border: 5px solid white; box-shadow: 0 20px 40px rgba(37, 25, 100, 0.15); display: block; margin-left: auto; margin-right: auto; will-change: transform; }
 
-        /* ----------------------------------------------------------- */
-        /* CINTA DE TEXTO INFINITA */
-        /* ----------------------------------------------------------- */
-        .marquee-wrapper {
-            background-color: var(--primary-brand);
-            color: rgba(255, 255, 255, 0.9);
-            padding: 15px 0;
-            overflow: hidden;
-            width: 110vw; 
-            margin-left: -5vw; 
-            transform: rotate(-3deg) scale(1.05); 
-            margin-top: -60px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            position: relative;
-            z-index: 5;
-        }
-        .marquee-content {
-            display: flex;
-            white-space: nowrap;
-            width: max-content;
-            animation: scrollMarquee 20s linear infinite;
-        }
-        .marquee-content span {
-            font-size: 1.2rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            margin: 0 30px;
-            background: none !important;
-            border: none !important;
-            padding: 0 !important;
-        }
-        @keyframes scrollMarquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); } 
-        }
+        .marquee-wrapper { background-color: var(--primary-brand); color: rgba(255, 255, 255, 0.9); padding: 15px 0; overflow: hidden; width: 110vw; margin-left: -5vw; transform: rotate(-3deg) scale(1.05); margin-top: -60px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); position: relative; z-index: 5; }
+        .marquee-content { display: flex; white-space: nowrap; width: max-content; animation: scrollMarquee 20s linear infinite; }
+        .marquee-content span { font-size: 1.2rem; font-weight: 700; letter-spacing: 2px; margin: 0 30px; }
+        @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* Botones Generales */
-        .btn-apple-primary { background-color: white; color: var(--primary-brand); border-radius: 980px; padding: 12px 28px; font-size: 17px; font-weight: 600; border: none; text-decoration: none; transition: all 0.3s ease; display: inline-block; }
+        .btn-apple-primary { background-color: white; color: var(--primary-brand); border-radius: 980px; padding: 12px 28px; font-size: 17px; font-weight: 600; border: none; text-decoration: none; transition: all 0.3s ease; display: inline-block; cursor: pointer; }
         .btn-apple-primary:hover { background-color: #f0f0f0; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .btn-apple-secondary { background-color: transparent; color: white; border-radius: 980px; padding: 11px 28px; font-size: 17px; font-weight: 400; border: 1px solid rgba(255,255,255,0.6); text-decoration: none; transition: all 0.3s ease; display: inline-block; }
+        .btn-apple-secondary { background-color: transparent; color: white; border-radius: 980px; padding: 11px 28px; font-size: 17px; font-weight: 400; border: 1px solid rgba(255,255,255,0.6); text-decoration: none; transition: all 0.3s ease; display: inline-block; cursor: pointer;}
         .btn-apple-secondary:hover { background-color: white; color: var(--primary-brand); }
 
-        /* Cards 3D */
-        .apple-card { background: var(--surface-color); border-radius: 24px; box-shadow: 0 4px 24px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.02); padding: 35px 25px; height: 100%; transform-style: preserve-3d; will-change: transform; transition: box-shadow 0.4s ease, transform 0.1s ease; }
-        .apple-card:hover { box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1); z-index: 10; }
+        /* ----------------------------------------------------------- */
+        /* MOBBIN INJECTIONS: CARDS & PILLS */
+        /* ----------------------------------------------------------- */
+        .apple-card { 
+            background: var(--surface-color); border-radius: 24px; box-shadow: 0 4px 24px rgba(0,0,0,0.03); 
+            border: 1px solid rgba(0,0,0,0.04); padding: 35px 25px; height: 100%; 
+            transform-style: preserve-3d; will-change: transform; transition: box-shadow 0.4s ease, transform 0.1s ease;
+            position: relative; overflow: hidden; /* Fix Mobbin Overlay */
+        }
+        .apple-card:hover { box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1); z-index: 10; border: 1px solid rgba(0,0,0,0.08); }
         .apple-card h5, .apple-card p, .skill-badge { transform: translateZ(20px); transition: transform 0.3s ease; }
         .card-icon { font-size: 2.5rem; color: var(--primary-brand); margin-bottom: 20px; transform: translateZ(40px); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); display: inline-block; }
         .apple-card:hover .card-icon { transform: translateZ(50px) scale(1.1); }
 
-        /* Burbujas Skills */
+        /* Mobbin Glass Overlay */
+        .apple-card::after {
+            content: 'Explore ➔'; position: absolute; bottom: -60px; left: 0; width: 100%; padding: 15px 0;
+            background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            color: var(--primary-brand); font-weight: 700; font-size: 0.9rem; text-align: center;
+            border-top: 1px solid rgba(0,0,0,0.05); transition: bottom 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0; z-index: 20; pointer-events: none;
+        }
+        .apple-card:hover::after { bottom: 0; opacity: 1; }
+
+        /* Mobbin Pills */
+        .mobbin-filters { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 2.5rem; }
+        .filter-pill { 
+            background-color: var(--bg-color); color: var(--text-muted); border: 1px solid rgba(0,0,0,0.05); 
+            border-radius: 980px; padding: 8px 20px; font-size: 0.9rem; font-weight: 600; 
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+        .filter-pill:hover { background-color: white; color: var(--text-main); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .filter-pill.active { background-color: var(--primary-brand); color: white; border-color: var(--primary-brand); box-shadow: 0 4px 15px rgba(37, 25, 100, 0.3); }
+
+        .project-item { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .project-item.hide { display: none; opacity: 0; transform: scale(0.9); }
+
+        /* Mobbin Floating Action Bar (FAB) */
+        .mobbin-fab {
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px);
+            background: rgba(255, 255, 255, 0.85); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border: 1px solid rgba(0,0,0,0.08); border-radius: 980px; padding: 8px 16px;
+            display: flex; gap: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); z-index: 1000;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease; opacity: 0; pointer-events: none;
+        }
+        .mobbin-fab.visible { transform: translateX(-50%) translateY(0); opacity: 1; pointer-events: all; }
+        .mobbin-fab a { color: var(--text-main); text-decoration: none; font-weight: 600; font-size: 0.85rem; padding: 8px 16px; border-radius: 980px; transition: background 0.3s; display: flex; align-items: center; gap: 6px; }
+        .mobbin-fab a:hover { background: rgba(0,0,0,0.06); }
+        .mobbin-fab a.primary-action { background: var(--primary-brand); color: white; }
+        .mobbin-fab a.primary-action:hover { background: var(--primary-dark); }
+
+        /* Custom Magnetic Cursor */
+        @media (min-width: 992px) {
+            body { cursor: none; }
+            .custom-cursor { position: fixed; width: 8px; height: 8px; background-color: var(--primary-brand); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: opacity 0.3s, transform 0.2s; }
+            .custom-cursor-follower { position: fixed; width: 40px; height: 40px; border: 1px solid rgba(37, 25, 100, 0.3); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s; }
+            body.cursor-hover .custom-cursor-follower { width: 70px; height: 70px; background-color: rgba(37, 25, 100, 0.05); border-color: transparent; }
+            body.cursor-hover .custom-cursor { transform: translate(-50%, -50%) scale(0.5); opacity: 0.5; }
+        }
+
         .skill-badge { background-color: #f5f5f7; color: var(--primary-brand); font-size: 0.85rem; font-weight: 600; padding: 8px 16px; margin: 4px; border-radius: 20px; display: inline-block; border: 1px solid transparent; opacity: 0; transform: scale(0.5) translateZ(20px); transition: opacity 0.4s ease, transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s, color 0.3s, box-shadow 0.3s; }
         .skill-badge.pop-active { opacity: 1; transform: scale(1) translateZ(20px); }
         .skill-badge.pop-active:hover { background-color: var(--accent-vivid); color: white; box-shadow: 0 8px 20px rgba(0, 113, 227, 0.3); transform: translateZ(30px) translateY(-3px) scale(1.05); }
 
-        /* Secciones y Textos */
-        .section-title { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 3rem; text-align: center; color: var(--primary-dark); }
+        .section-title { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 2rem; text-align: center; color: var(--primary-dark); }
         .text-muted-apple { color: var(--text-muted) !important; }
         .text-brand { color: var(--primary-brand) !important; }
         
-        .cert-list li { padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.05); font-size: 0.95rem; transition: color 0.3s ease, padding-left 0.3s ease; }
+        .cert-list li { padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.05); font-size: 0.95rem; transition: color 0.3s ease, padding-left 0.3s ease; cursor: default; }
         .cert-list li:hover { color: var(--primary-brand); padding-left: 5px; }
         .cert-list li:last-child { border-bottom: none; }
 
-        /* Reveal Animations */
         .reveal, .reveal-left, .reveal-right, .reveal-scale { opacity: 0; transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
         .reveal { transform: translateY(50px); }
         .reveal-left { transform: translateX(-60px); }
@@ -203,14 +189,10 @@
         .reveal-scale { transform: scale(0.9); }
         .reveal.active, .reveal-left.active, .reveal-right.active, .reveal-scale.active { opacity: 1; transform: translate(0) scale(1); }
 
-        /* Footer */
         footer { background-color: var(--primary-dark); color: white; border-top: 1px solid rgba(0,0,0,0.05); }
         .social-link { width: 50px; height: 50px; line-height: 48px; display: inline-block; border-radius: 50%; border: 1px solid rgba(255,255,255,0.2); color: white; font-size: 1.2rem; transition: all 0.3s ease; text-decoration: none; margin: 0 10px; }
         .social-link:hover { background-color: white; color: var(--primary-brand); transform: scale(1.1); }
 
-        /* ----------------------------------------------------------- */
-        /* MEDIA QUERIES PARA MÓVILES */
-        /* ----------------------------------------------------------- */
         @media (max-width: 768px) {
             .navbar { padding: 8px 0; }
             .name-title { font-size: 2.2rem; margin-bottom: 10px; }
@@ -218,42 +200,35 @@
             .hero-section { padding: 130px 0 90px; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 40px), 0 100%); }
         }
 
-        /* ----------------------------------------------------------- */
-        /* FIX HAMBURGUESA RESPONSIVE ESTRICTO */
-        /* ----------------------------------------------------------- */
-        .navbar-toggler {
-            border: none !important;
-            padding: 0.2rem 0.5rem !important; 
-            box-shadow: none !important;
-        }
-        .navbar-toggler:focus, .navbar-toggler:active {
-            outline: none !important;
-            box-shadow: none !important;
-        }
-        .navbar-toggler-icon {
-            width: 1.5rem !important; 
-            height: 1.5rem !important;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='%23ffffff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.5' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") !important;
-            background-size: 100% !important;
-            display: inline-block;
-        }
+        .navbar-toggler { border: none !important; padding: 0.2rem 0.5rem !important; box-shadow: none !important; }
+        .navbar-toggler:focus, .navbar-toggler:active { outline: none !important; box-shadow: none !important; }
+        .navbar-toggler-icon { width: 1.5rem !important; height: 1.5rem !important; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='%23ffffff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.5' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") !important; background-size: 100% !important; display: inline-block; }
     </style>
 </head>
 <body>
 
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-follower"></div>
+
+    <div class="mobbin-fab" id="floatingActionBar">
+        <a href="#about"><i class="fas fa-arrow-up"></i></a>
+        <a href="#projects">Work</a>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=analisisjeanpaul@gmail.com" target="_blank" class="primary-action"><i class="fas fa-envelope"></i> Hire Me</a>
+    </div>
+
     <nav class="navbar navbar-expand-lg fixed-top" id="mainNav" data-bs-theme="dark">
         <div class="container">
-            <a class="navbar-brand" href="#">Jean Paul Giraldo</a>
+            <a class="navbar-brand hover-magnet" href="#">Jean Paul Giraldo</a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link hover-magnet" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link hover-magnet" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link hover-magnet" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link hover-magnet" href="#experience">Experience</a></li>
+                    <li class="nav-item"><a class="nav-link hover-magnet" href="#contact">Contact</a></li>
                 </ul>
             </div>
         </div>
@@ -261,7 +236,7 @@
 
     <section class="hero-section text-center">
         <div class="container reveal">
-            <h1 class="name-title" id="main-title-type"></h1>
+            <h1 class="name-title hover-magnet" id="main-title-type"></h1>
             
             <h2 class="hero-subtitle mb-5">
                 Data & Product Engineer. <br> 
@@ -270,8 +245,8 @@
             </h2>
             
             <div id="hero-buttons" class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
-                <a href="#projects" class="btn-apple-primary">View Portfolio</a>
-                <a href="#contact" class="btn-apple-secondary">Contact Me</a>
+                <a href="#projects" class="btn-apple-primary hover-magnet">View Portfolio</a>
+                <a href="#contact" class="btn-apple-secondary hover-magnet">Contact Me</a>
             </div>
         </div>
     </section>
@@ -287,7 +262,7 @@
         <div class="container py-5">
             <div class="row align-items-center">
                 <div class="col-lg-5 text-center mb-5 mb-lg-0 reveal-left">
-                    <img src="Jeanpaulgiraldo.png" alt="Jean Paul Giraldo" class="profile-img" id="parallax-img">
+                    <img src="Jeanpaulgiraldo.png" alt="Jean Paul Giraldo" class="profile-img hover-magnet" id="parallax-img">
                 </div>
                 <div class="col-lg-7 reveal-right" style="transition-delay: 0.1s;">
                     <h3 class="fw-bold mb-4" style="font-size: 2rem; letter-spacing: -0.02em; color: var(--primary-dark);">Bridging the gap between code, design, and data.</h3>
@@ -299,7 +274,7 @@
                         I build robust digital experiences by combining development, UI/UX design, and strategic e-commerce branding. I am specializing in Data Quality within Business Intelligence (BI) and Data Science, utilizing advanced SQL and secure data infrastructure.
                     </p>
 
-                    <div class="apple-card mt-4 border-start border-4" style="border-color: var(--primary-brand) !important; padding: 25px; transform: none !important;">
+                    <div class="apple-card mt-4 border-start border-4 hover-magnet" style="border-color: var(--primary-brand) !important; padding: 25px; transform: none !important;">
                         <h5 class="fw-bold mb-3 text-brand"><i class="fas fa-crosshairs me-2"></i> Current Focus</h5>
                         <div class="row">
                             <div class="col-sm-6 mb-2"><i class="fas fa-check text-brand me-2"></i>AWS Cloud Security</div>
@@ -318,7 +293,7 @@
             <h2 class="section-title reveal">Technical Arsenal.</h2>
             <div class="row g-4">
                 <div class="col-md-4 reveal" style="transition-delay: 0.1s;">
-                    <div class="apple-card">
+                    <div class="apple-card hover-magnet">
                         <i class="fas fa-code card-icon"></i>
                         <h5 class="fw-bold mb-4 text-brand">Languages</h5>
                         <div>
@@ -330,7 +305,7 @@
                     </div>
                 </div>
                 <div class="col-md-4 reveal" style="transition-delay: 0.2s;">
-                    <div class="apple-card">
+                    <div class="apple-card hover-magnet">
                         <i class="fas fa-server card-icon"></i>
                         <h5 class="fw-bold mb-4 text-brand">Infrastructure</h5>
                         <div>
@@ -341,7 +316,7 @@
                     </div>
                 </div>
                 <div class="col-md-4 reveal" style="transition-delay: 0.3s;">
-                    <div class="apple-card">
+                    <div class="apple-card hover-magnet">
                         <i class="fas fa-lightbulb card-icon"></i>
                         <h5 class="fw-bold mb-4 text-brand">Strategy</h5>
                         <div>
@@ -357,33 +332,41 @@
     <section id="projects" class="py-5" style="background-color: var(--surface-color);">
         <div class="container py-5">
             <h2 class="section-title reveal">Featured Projects.</h2>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-3 reveal-scale" style="transition-delay: 0.1s;">
-                    <div class="apple-card text-center">
+            
+            <div class="mobbin-filters reveal" style="transition-delay: 0.1s;">
+                <button class="filter-pill active hover-magnet" data-filter="all">All Specs</button>
+                <button class="filter-pill hover-magnet" data-filter="data">Data & DB</button>
+                <button class="filter-pill hover-magnet" data-filter="software">Software Eng</button>
+                <button class="filter-pill hover-magnet" data-filter="ux">Strategy & UX</button>
+            </div>
+
+            <div class="row g-4" id="project-grid">
+                <div class="col-md-6 col-lg-3 reveal-scale project-item" data-category="data" style="transition-delay: 0.1s;">
+                    <div class="apple-card text-center hover-magnet">
                         <i class="fas fa-database card-icon"></i>
                         <h5 class="fw-bold mb-2">Alumni DB System</h5>
                         <p class="text-muted-apple small mb-3">BD_Gestiondeengresados</p>
                         <p class="small mb-0">Architected a comprehensive relational SQL Server database for graduate data.</p>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3 reveal-scale" style="transition-delay: 0.2s;">
-                    <div class="apple-card text-center">
+                <div class="col-md-6 col-lg-3 reveal-scale project-item" data-category="ux" style="transition-delay: 0.2s;">
+                    <div class="apple-card text-center hover-magnet">
                         <i class="fas fa-chart-line card-icon"></i>
                         <h5 class="fw-bold mb-2">Automotive Mktg</h5>
                         <p class="text-muted-apple small mb-3">Digital Analytics</p>
                         <p class="small mb-0">Managed a campaign achieving 70k views, 640 engagements, and 25 leads.</p>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3 reveal-scale" style="transition-delay: 0.3s;">
-                    <div class="apple-card text-center">
+                <div class="col-md-6 col-lg-3 reveal-scale project-item" data-category="ux" style="transition-delay: 0.3s;">
+                    <div class="apple-card text-center hover-magnet">
                         <i class="fas fa-leaf card-icon"></i>
                         <h5 class="fw-bold mb-2">Zero Waste App</h5>
                         <p class="text-muted-apple small mb-3">UI/UX & Design Sprint</p>
                         <p class="small mb-0">Developed business plan, SWOT analysis, and testing strategy.</p>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3 reveal-scale" style="transition-delay: 0.4s;">
-                    <div class="apple-card text-center">
+                <div class="col-md-6 col-lg-3 reveal-scale project-item" data-category="software" style="transition-delay: 0.4s;">
+                    <div class="apple-card text-center hover-magnet">
                         <i class="fas fa-window-maximize card-icon"></i>
                         <h5 class="fw-bold mb-2">C# CRUD App</h5>
                         <p class="text-muted-apple small mb-3">Software Engineering</p>
@@ -399,12 +382,12 @@
             <div class="row">
                 <div class="col-lg-6 mb-5 mb-lg-0 reveal-left">
                     <h2 class="section-title text-start mb-5">Experience.</h2>
-                    <div class="mb-4 ps-3 border-start border-3" style="border-color: var(--primary-brand) !important;">
+                    <div class="mb-4 ps-3 border-start border-3 hover-magnet" style="border-color: var(--primary-brand) !important; cursor: default;">
                         <h5 class="fw-bold mb-1">Operations Manager & Visual Designer</h5>
                         <p class="text-brand fw-bold mb-2">Drews Male</p>
                         <p class="text-muted-apple small">Managed core operations while designing visual brand assets to optimize the customer experience.</p>
                     </div>
-                    <div class="mb-4 ps-3 border-start border-3" style="border-color: var(--primary-brand) !important;">
+                    <div class="mb-4 ps-3 border-start border-3 hover-magnet" style="border-color: var(--primary-brand) !important; cursor: default;">
                         <h5 class="fw-bold mb-1">E-commerce Specialist & Brand Strategist</h5>
                         <p class="text-brand fw-bold mb-2">Luxejoyería18k (Freelance)</p>
                         <p class="text-muted-apple small">Led e-commerce strategies, improving online storefronts to increase conversion rates.</p>
@@ -412,7 +395,7 @@
                 </div>
                 <div class="col-lg-6 reveal-right" style="transition-delay: 0.2s;">
                     <h2 class="section-title text-start mb-5">Certifications.</h2>
-                    <div class="apple-card p-4" style="transform: none !important;"> 
+                    <div class="apple-card p-4 hover-magnet" style="transform: none !important;"> 
                         <div class="row">
                             <div class="col-sm-6">
                                 <ul class="list-unstyled cert-list mb-0">
@@ -439,12 +422,12 @@
 
     <footer id="contact" class="py-5 text-center">
         <div class="container py-4 reveal">
-            <h2 class="fw-bold mb-4">Let's build something great.</h2>
+            <h2 class="fw-bold mb-4 hover-magnet">Let's build something great.</h2>
             <p class="text-light opacity-75 mb-4">Open to opportunities in Software Engineering, Data Science, and UI/UX design.</p>
             <div class="d-flex justify-content-center mb-5">
-                <a href="https://www.linkedin.com/in/jean-paul-giraldo-6b59a5275/" target="_blank" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://github.com/Jeanpaulgiraldo" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=analisisjeanpaul@gmail.com" target="_blank" class="social-link"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.linkedin.com/in/jean-paul-giraldo-6b59a5275/" target="_blank" class="social-link hover-magnet"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/Jeanpaulgiraldo" target="_blank" class="social-link hover-magnet"><i class="fab fa-github"></i></a>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=analisisjeanpaul@gmail.com" target="_blank" class="social-link hover-magnet"><i class="fas fa-envelope"></i></a>
             </div>
             <p class="small text-light opacity-50 mb-0">&copy; <span id="currentYear"></span> Jean Paul Giraldo. All rights reserved.</p>
         </div>
@@ -455,9 +438,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             
-            // ----------------------------------------------------------
             // 1. INICIALIZAR LENIS (Smooth Scroll)
-            // ----------------------------------------------------------
             const lenis = new Lenis({
                 duration: 1.2,
                 easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
@@ -476,9 +457,7 @@
             }
             requestAnimationFrame(raf);
 
-            // ----------------------------------------------------------
             // 2. PARALLAX EN FOTO
-            // ----------------------------------------------------------
             const parallaxImg = document.getElementById('parallax-img');
             lenis.on('scroll', (e) => {
                 if(parallaxImg) {
@@ -487,9 +466,7 @@
                 }
             });
 
-            // ----------------------------------------------------------
-            // 4. MÁQUINA DE ESCRIBIR HERO
-            // ----------------------------------------------------------
+            // 3. MÁQUINA DE ESCRIBIR HERO
             const mainTitleElement = document.getElementById('main-title-type');
             const typeWriterElement = document.getElementById('typewriter');
             const heroButtons = document.getElementById('hero-buttons');
@@ -559,9 +536,7 @@
             
             setTimeout(typeMainTitle, 500); 
 
-            // ----------------------------------------------------------
-            // 5. EFECTO 3D EN TARJETAS
-            // ----------------------------------------------------------
+            // 4. EFECTO 3D EN TARJETAS
             const cards = document.querySelectorAll('.apple-card:not([style*="transform: none"])');
             cards.forEach(card => {
                 card.addEventListener('mousemove', (e) => {
@@ -582,21 +557,29 @@
                 });
             });
 
-            // 6. Navbar Glassmorphism
+            // 5. Navbar Glassmorphism & Floating Action Bar
             const navbar = document.getElementById('mainNav');
-            function handleNavbarScroll() {
+            const fab = document.getElementById('floatingActionBar');
+            
+            function handleScrollEvents() {
+                // Navbar
                 if (window.scrollY > 50) {
                     navbar.classList.add('scrolled');
                 } else {
                     navbar.classList.remove('scrolled');
                 }
-            }
-            window.addEventListener('scroll', handleNavbarScroll);
-            handleNavbarScroll();
 
-            // ----------------------------------------------------------
-            // 7. ANIMACIONES DE APARICIÓN
-            // ----------------------------------------------------------
+                // FAB (Aparece después del Hero section)
+                if (window.scrollY > window.innerHeight * 0.8) {
+                    fab.classList.add('visible');
+                } else {
+                    fab.classList.remove('visible');
+                }
+            }
+            window.addEventListener('scroll', handleScrollEvents);
+            handleScrollEvents();
+
+            // 6. ANIMACIONES DE APARICIÓN
             const revealElements = document.querySelectorAll(".reveal, .reveal-left, .reveal-right, .reveal-scale");
             const revealOptions = {
                 threshold: 0.15, 
@@ -625,7 +608,7 @@
                 revealOnScroll.observe(el);
             });
 
-            // 8. Menú móvil
+            // 7. Menú móvil
             const navLinks = document.querySelectorAll('.nav-link');
             const menuToggle = document.getElementById('navbarNav');
             if (menuToggle && bootstrap.Collapse) {
@@ -639,13 +622,11 @@
                 });
             }
 
-            // 9. Año
+            // 8. Año
             const yearEl = document.getElementById('currentYear');
             if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-            // ----------------------------------------------------------
-            // 10. MÁQUINA DE ESCRIBIR ABOUT
-            // ----------------------------------------------------------
+            // 9. MÁQUINA DE ESCRIBIR ABOUT
             const parrafosEscribir = document.querySelectorAll('.escribir-automatico');
             const observerParrafos = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
@@ -676,6 +657,62 @@
                 p.textContent = ''; 
                 observerParrafos.observe(p);
             });
+
+            // 10. MOBBIN FILTERS LOGIC
+            const filterBtns = document.querySelectorAll('.filter-pill');
+            const projectItems = document.querySelectorAll('.project-item');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remover activo de todos
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    // Añadir activo al clickeado
+                    btn.classList.add('active');
+
+                    const filterValue = btn.getAttribute('data-filter');
+
+                    projectItems.forEach(item => {
+                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                            item.classList.remove('hide');
+                            setTimeout(() => {
+                                item.style.display = 'block';
+                            }, 50);
+                        } else {
+                            item.classList.add('hide');
+                            setTimeout(() => {
+                                item.style.display = 'none';
+                            }, 300); // Dar tiempo a la animación de escala/opacidad
+                        }
+                    });
+                });
+            });
+
+            // 11. MOBBIN CUSTOM CURSOR LOGIC
+            const cursor = document.querySelector('.custom-cursor');
+            const follower = document.querySelector('.custom-cursor-follower');
+            let mouseX = 0, mouseY = 0, posX = 0, posY = 0;
+
+            if (window.innerWidth >= 992) {
+                document.addEventListener('mousemove', (e) => {
+                    mouseX = e.clientX; mouseY = e.clientY;
+                    cursor.style.left = `${mouseX}px`; cursor.style.top = `${mouseY}px`;
+                });
+
+                function renderCursor() {
+                    posX += (mouseX - posX) * 0.15; 
+                    posY += (mouseY - posY) * 0.15;
+                    follower.style.left = `${posX}px`; follower.style.top = `${posY}px`;
+                    requestAnimationFrame(renderCursor);
+                }
+                renderCursor();
+
+                // Activar magnetismo en elementos clave
+                const interactives = document.querySelectorAll('.hover-magnet, a, button, .apple-card');
+                interactives.forEach(el => {
+                    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+                    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+                });
+            }
             
         });
     </script>
