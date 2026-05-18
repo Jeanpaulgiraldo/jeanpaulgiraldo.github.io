@@ -70,14 +70,15 @@
         .nav-link:hover { color: white !important; transform: translateY(-1px); }
 
         /* ----------------------------------------------------------- */
-        /* HERO SECTION (CON VIDEO INTELIGENTE) */
+        /* HERO SECTION (CON VIDEO INTEGRADO) */
         /* ----------------------------------------------------------- */
         .hero-section {
             color: white;
             padding: 180px 0 130px;
             clip-path: polygon(0 0, 100% 0, 100% calc(100% - 60px), 0 100%);
             position: relative;
-            overflow: hidden; /* Para contener el video */
+            overflow: hidden;
+            background-color: var(--primary-dark);
         }
         
         .hero-video-bg {
@@ -89,7 +90,7 @@
             width: auto;
             height: auto;
             z-index: 0;
-            transform: translateX(-50%) translateY(-50%);
+            transform: translate(-50%, -50%);
             object-fit: cover;
         }
 
@@ -100,13 +101,8 @@
             width: 100%;
             height: 100%;
             z-index: 1;
-            /* Gradiente semitransparente sobre el video */
-            background: linear-gradient(-45deg, rgba(22, 14, 64, 0.85), rgba(37, 25, 100, 0.75), rgba(62, 44, 166, 0.75), rgba(26, 16, 80, 0.85));
-            background-size: 400% 400%;
-            animation: gradientLiquid 12s ease infinite;
+            background: rgba(22, 14, 64, 0.75); /* Filtro oscuro equilibrado para proteger los textos */
         }
-
-        @keyframes gradientLiquid { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
         .name-title { 
             font-size: 3.5rem; font-weight: 700; letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 20px; min-height: 1.2em; 
@@ -153,20 +149,19 @@
         .btn-apple-secondary:hover { background-color: white; color: var(--primary-brand); }
 
         /* ----------------------------------------------------------- */
-        /* MOBBIN INJECTIONS: CARDS & PILLS */
+        /* CARDS & PILLS */
         /* ----------------------------------------------------------- */
         .apple-card { 
             background: var(--surface-color); border-radius: 24px; box-shadow: 0 4px 24px rgba(0,0,0,0.03); 
             border: 1px solid rgba(0,0,0,0.04); padding: 35px 25px; height: 100%; 
             transform-style: preserve-3d; will-change: transform; transition: box-shadow 0.4s ease, transform 0.1s ease;
-            position: relative; overflow: hidden; /* Fix Mobbin Overlay */
+            position: relative; overflow: hidden;
         }
         .apple-card:hover { box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1); z-index: 10; border: 1px solid rgba(0,0,0,0.08); }
         .apple-card h5, .apple-card p, .skill-badge { transform: translateZ(20px); transition: transform 0.3s ease; }
         .card-icon { font-size: 2.5rem; color: var(--primary-brand); margin-bottom: 20px; transform: translateZ(40px); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); display: inline-block; }
         .apple-card:hover .card-icon { transform: translateZ(50px) scale(1.1); }
 
-        /* Mobbin Glass Overlay */
         .apple-card::after {
             content: 'Explore ➔'; position: absolute; bottom: -60px; left: 0; width: 100%; padding: 15px 0;
             background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
@@ -176,7 +171,6 @@
         }
         .apple-card:hover::after { bottom: 0; opacity: 1; }
 
-        /* Mobbin Pills */
         .mobbin-filters { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 2.5rem; }
         .filter-pill { 
             background-color: var(--bg-color); color: var(--text-muted); border: 1px solid rgba(0,0,0,0.05); 
@@ -189,7 +183,6 @@
         .project-item { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
         .project-item.hide { display: none; opacity: 0; transform: scale(0.9); }
 
-        /* Mobbin Floating Action Bar (FAB) */
         .mobbin-fab {
             position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px);
             background: rgba(255, 255, 255, 0.85); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px);
@@ -235,7 +228,6 @@
         .social-link { width: 50px; height: 50px; line-height: 48px; display: inline-block; border-radius: 50%; border: 1px solid rgba(255,255,255,0.2); color: white; font-size: 1.2rem; transition: all 0.3s ease; text-decoration: none; margin: 0 10px; }
         .social-link:hover { background-color: white; color: var(--primary-brand); transform: scale(1.1); }
 
-        /* Media queries generales y 1080px */
         @media (max-width: 1080px) {
             #about {
                 padding-top: 2rem !important;
@@ -291,7 +283,7 @@
     </nav>
 
     <section class="hero-section text-center">
-        <video autoplay loop muted playsinline class="hero-video-bg">
+        <video autoplay loop muted playsinline poster="Jeanpaulgiraldo.png" class="hero-video-bg">
             <source src="Diseño sin título(2).mp4" type="video/mp4">
         </video>
         <div class="hero-overlay"></div>
@@ -623,14 +615,12 @@
             const fab = document.getElementById('floatingActionBar');
             
             function handleScrollEvents() {
-                // Navbar
                 if (window.scrollY > 50) {
                     navbar.classList.add('scrolled');
                 } else {
                     navbar.classList.remove('scrolled');
                 }
 
-                // FAB (Aparece después del Hero section)
                 if (window.scrollY > window.innerHeight * 0.8) {
                     fab.classList.add('visible');
                 } else {
@@ -725,9 +715,7 @@
 
             filterBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
-                    // Remover activo de todos
                     filterBtns.forEach(b => b.classList.remove('active'));
-                    // Añadir activo al clickeado
                     btn.classList.add('active');
 
                     const filterValue = btn.getAttribute('data-filter');
@@ -742,7 +730,7 @@
                             item.classList.add('hide');
                             setTimeout(() => {
                                 item.style.display = 'none';
-                            }, 300); // Dar tiempo a la animación de escala/opacidad
+                            }, 300);
                         }
                     });
                 });
@@ -767,7 +755,6 @@
                 }
                 renderCursor();
 
-                // Activar magnetismo en elementos clave
                 const interactives = document.querySelectorAll('.hover-magnet, a, button, .apple-card');
                 interactives.forEach(el => {
                     el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
