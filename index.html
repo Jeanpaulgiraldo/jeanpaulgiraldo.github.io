@@ -187,6 +187,105 @@
         .btn-apple-secondary:hover { background-color: white; color: var(--primary-brand); }
 
         /* ----------------------------------------------------------- */
+        /* PIEZA UNIFICADA: FLOATING ACTION BANNER COMPLETAMENTE TRANSPARENTE */
+        /* ----------------------------------------------------------- */
+        .mobbin-fab {
+            position: fixed; 
+            bottom: 30px; 
+            left: 50%; 
+            transform: translateX(-50%) translateY(120px);
+            /* Transparencia absoluta + desenfoque de cristal premium */
+            background: rgba(255, 255, 255, 0.08); 
+            backdrop-filter: saturate(140%) blur(20px); 
+            -webkit-backdrop-filter: saturate(140%) blur(20px);
+            /* Borde blanco pulido con brillo de luz */
+            border: 2px solid rgba(255, 255, 255, 0.85);
+            border-radius: 980px; 
+            padding: 8px 14px;
+            display: flex; 
+            align-items: center;
+            gap: 4px; 
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1), 0 0 15px rgba(255, 255, 255, 0.2);
+            z-index: 1000;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease, border-color 0.3s, box-shadow 0.3s; 
+            opacity: 0; 
+            pointer-events: none;
+            will-change: transform, opacity;
+        }
+        
+        /* Efecto Hover en el contenedor del Banner */
+        .mobbin-fab:hover {
+            border-color: #ffffff;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 0 25px rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .mobbin-fab.visible { 
+            transform: translateX(-50%) translateY(0); 
+            opacity: 1; 
+            pointer-events: all; 
+        }
+        
+        /* Enlaces internos completamente transparentes */
+        .mobbin-fab a { 
+            color: #ffffff; 
+            text-decoration: none; 
+            font-weight: 500; 
+            font-size: 0.95rem; 
+            padding: 10px 22px; 
+            border-radius: 980px; 
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); 
+            display: flex; 
+            align-items: center; 
+            gap: 8px;
+            background: transparent;
+            border: 1px solid transparent;
+        }
+        
+        /* Efecto hover en ítems normales (Flecha y Work) */
+        .mobbin-fab a:hover { 
+            background: rgba(255, 255, 255, 0.15); 
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+        
+        /* BOTÓN HIRE ME: Completamente transparente con contorno blanco interno */
+        .mobbin-fab a.primary-action { 
+            background: transparent; 
+            color: #ffffff;
+            font-weight: 600;
+            border: 1.5px solid rgba(255, 255, 255, 0.7);
+        }
+        
+        .mobbin-fab a.primary-action:hover { 
+            background: #ffffff; 
+            color: var(--primary-brand);
+            border-color: #ffffff;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+            font-weight: 700;
+        }
+        
+        /* Separadores blancos finos de la pieza */
+        .mobbin-fab .fab-divider {
+            width: 1px;
+            height: 22px;
+            background-color: rgba(255, 255, 255, 0.4);
+            margin: 0 6px;
+        }
+
+        /* Contexto adaptativo automático cuando el banner pasa sobre secciones blancas o claras */
+        body:not(.dark-context) .mobbin-fab {
+            background: rgba(0, 0, 0, 0.05);
+            border-color: var(--primary-brand);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+        }
+        body:not(.dark-context) .mobbin-fab a { color: var(--primary-dark); }
+        body:not(.dark-context) .mobbin-fab .fab-divider { background-color: rgba(22, 14, 64, 0.3); }
+        body:not(.dark-context) .mobbin-fab a:hover { background: rgba(22, 14, 64, 0.08); color: var(--primary-brand); }
+        body:not(.dark-context) .mobbin-fab a.primary-action { border-color: var(--primary-brand); color: var(--primary-brand); }
+        body:not(.dark-context) .mobbin-fab a.primary-action:hover { background: var(--primary-brand); color: #ffffff; }
+
+        /* ----------------------------------------------------------- */
         /* MOBBIN INJECTIONS: CARDS & PILLS */
         /* ----------------------------------------------------------- */
         .apple-card { 
@@ -221,19 +320,6 @@
         .project-item { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
         .project-item.hide { display: none; opacity: 0; transform: scale(0.9); }
 
-        .mobbin-fab {
-            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px);
-            background: rgba(255, 255, 255, 0.85); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px);
-            border: 1px solid rgba(0,0,0,0.08); border-radius: 980px; padding: 8px 16px;
-            display: flex; gap: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); z-index: 1000;
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease; opacity: 0; pointer-events: none;
-        }
-        .mobbin-fab.visible { transform: translateX(-50%) translateY(0); opacity: 1; pointer-events: all; }
-        .mobbin-fab a { color: var(--text-main); text-decoration: none; font-weight: 600; font-size: 0.85rem; padding: 8px 16px; border-radius: 980px; transition: background 0.3s; display: flex; align-items: center; gap: 6px; }
-        .mobbin-fab a:hover { background: rgba(0,0,0,0.06); }
-        .mobbin-fab a.primary-action { background: var(--primary-brand); color: white; }
-        .mobbin-fab a.primary-action:hover { background: var(--primary-dark); }
-
         @media (min-width: 992px) {
             body { cursor: none; }
             .custom-cursor { position: fixed; width: 8px; height: 8px; background-color: var(--primary-brand); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: opacity 0.3s, transform 0.2s; }
@@ -261,7 +347,9 @@
         .reveal-scale { transform: scale(0.9); }
         .reveal.active, .reveal-left.active, .reveal-right.active, .reveal-scale.active { opacity: 1; transform: translate(0) scale(1); }
 
-        footer { background-color: var(--primary-dark); color: white; border-top: 1px solid rgba(0,0,0,0.05); }
+        /* SECCIÓN MODIFICADA: Agregamos relleno extra abajo para permitir un scroll más profundo */
+        footer { background-color: var(--primary-dark); color: white; border-top: 1px solid rgba(0,0,0,0.05); padding-bottom: 100px !important; }
+        
         .social-link { width: 50px; height: 50px; line-height: 48px; display: inline-block; border-radius: 50%; border: 1px solid rgba(255,255,255,0.2); color: white; font-size: 1.2rem; transition: all 0.3s ease; text-decoration: none; margin: 0 10px; }
         .social-link:hover { background-color: white; color: var(--primary-brand); transform: scale(1.1); }
 
@@ -277,6 +365,8 @@
             .hero-subtitle { font-size: 1.2rem; height: auto; min-height: 60px; }
             .hero-section { padding: 130px 0 90px; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 40px), 0 100%); }
             .profile-img { width: 220px !important; height: 220px !important; }
+            .mobbin-fab a { padding: 8px 14px; font-size: 0.85rem; }
+            .mobbin-fab .fab-divider { margin: 0 2px; }
         }
 
         .navbar-toggler { border: none !important; padding: 0.2rem 0.5rem !important; box-shadow: none !important; }
@@ -307,9 +397,11 @@
     <div class="custom-cursor-follower"></div>
 
     <div class="mobbin-fab" id="floatingActionBar">
-        <a href="#about"><i class="fas fa-arrow-up"></i></a>
-        <a href="#projects">Work</a>
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=analisisjeanpaul@gmail.com" target="_blank" class="primary-action"><i class="fas fa-envelope"></i> Hire Me</a>
+        <a href="#about" class="hover-magnet" title="Subir al inicio"><i class="fas fa-arrow-up"></i></a>
+        <div class="fab-divider"></div>
+        <a href="#projects" class="hover-magnet">Work</a>
+        <div class="fab-divider"></div>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=analisisjeanpaul@gmail.com" target="_blank" class="primary-action hover-magnet"><i class="fas fa-envelope"></i> Hire Me</a>
     </div>
 
     <nav class="navbar navbar-expand-lg fixed-top" id="mainNav" data-bs-theme="dark">
@@ -542,7 +634,7 @@
             // 1. INICIALIZAR LENIS (Smooth Scroll)
             const lenis = new Lenis({
                 duration: 1.2,
-                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
                 direction: 'vertical',
                 gestureDirection: 'vertical',
                 smooth: true,
@@ -658,15 +750,17 @@
                 });
             });
 
-            // 5. NAVBAR & FAB (Optimizados con banderas para evitar repintados innecesarios)
+            // 5. NAVBAR & BANNER FLOTANTE TRANSPARENTE INTELLIGENT SCROLL
             const navbar = document.getElementById('mainNav');
             const fab = document.getElementById('floatingActionBar');
+            const footer = document.getElementById('contact');
             let isScrolled = false;
             let isFabVisible = false;
             
             function handleScrollEvents() {
                 const scrollY = window.scrollY;
 
+                // Navbar scrolled background state
                 if (scrollY > 50 && !isScrolled) {
                     navbar.classList.add('scrolled');
                     isScrolled = true;
@@ -675,12 +769,24 @@
                     isScrolled = false;
                 }
 
+                // FAB visibility trigger (Aparece tras superar el 80% del viewport del Hero)
                 if (scrollY > window.innerHeight * 0.8 && !isFabVisible) {
                     fab.classList.add('visible');
                     isFabVisible = true;
                 } else if (scrollY <= window.innerHeight * 0.8 && isFabVisible) {
                     fab.classList.remove('visible');
                     isFabVisible = false;
+                }
+
+                // DETECCIÓN DE INTERSECCIÓN CON EL FOOTER O ÁREAS OSCURAS (Inversión contextual del Banner)
+                if (footer) {
+                    const footerBounds = footer.getBoundingClientRect();
+                    // Si el tope del footer entra en la zona inferior de la pantalla donde se sitúa el FAB
+                    if (footerBounds.top < window.innerHeight - 30) {
+                        document.body.classList.add('dark-context');
+                    } else {
+                        document.body.classList.remove('dark-context');
+                    }
                 }
             }
             window.addEventListener('scroll', handleScrollEvents, { passive: true });
