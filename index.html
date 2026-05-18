@@ -37,15 +37,16 @@
         }
 
         /* ----------------------------------------------------------- */
-        /* NAVBAR & EFECTO SHINE */
+        /* NAVBAR & PERFORMANCE OPTIMIZATION */
         /* ----------------------------------------------------------- */
         .navbar {
             background-color: rgba(22, 14, 64, 0.85) !important; 
             backdrop-filter: saturate(180%) blur(20px);
             -webkit-backdrop-filter: saturate(180%) blur(20px);
             border-bottom: 1px solid rgba(255,255,255,0.05);
-            transition: all 0.4s ease;
+            transition: padding 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             padding: 15px 0;
+            will-change: padding, background-color; /* GPU hack */
         }
         .navbar.scrolled {
             padding: 10px 0;
@@ -70,7 +71,7 @@
         .nav-link:hover { color: white !important; transform: translateY(-1px); }
 
         /* ----------------------------------------------------------- */
-        /* HERO SECTION (CON VIDEO INTEGRADO) */
+        /* HERO SECTION (PERFORMANCE BOOSTED) */
         /* ----------------------------------------------------------- */
         .hero-section {
             color: white;
@@ -78,7 +79,7 @@
             clip-path: polygon(0 0, 100% 0, 100% calc(100% - 60px), 0 100%);
             position: relative;
             overflow: hidden;
-            background-color: var(--primary-dark);
+            transform: translate3d(0,0,0); /* Fuerza aceleración por hardware */
         }
         
         .hero-video-bg {
@@ -90,7 +91,7 @@
             width: auto;
             height: auto;
             z-index: 0;
-            transform: translate(-50%, -50%);
+            transform: translate3d(-50%, -50%, 0);
             object-fit: cover;
         }
 
@@ -101,8 +102,12 @@
             width: 100%;
             height: 100%;
             z-index: 1;
-            background: rgba(22, 14, 64, 0.75); /* Filtro oscuro equilibrado para proteger los textos */
+            background: linear-gradient(-45deg, rgba(22, 14, 64, 0.85), rgba(37, 25, 100, 0.75), rgba(62, 44, 166, 0.75), rgba(26, 16, 80, 0.85));
+            background-size: 400% 400%;
+            animation: gradientLiquid 12s ease infinite;
         }
+
+        @keyframes gradientLiquid { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
         .name-title { 
             font-size: 3.5rem; font-weight: 700; letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 20px; min-height: 1.2em; 
@@ -121,21 +126,21 @@
         @keyframes border-blink { 0%, 100% { border-color: transparent; } 50% { border-color: white; } }
         @keyframes opacity-blink { 0%, 100% { opacity: 0; } 50% { opacity: 1; } }
 
-        /* Ajuste de imagen de perfil fluida */
+        /* ELIMINADO EL SALTO RARO DE LA IMAGEN DE PERFIL (Layout Shift Fixed) */
         .profile-img { 
-            width: 100% !important; 
-            max-width: 280px !important; 
-            height: auto !important;
-            aspect-ratio: 1 / 1;
-            object-fit: cover; 
-            object-position: top center;
+            width: 280px !important;
+            height: 280px !important;
+            aspect-ratio: 1 / 1 !important; /* Reserva el espacio perfecto antes de descargar */
+            object-fit: cover !important; 
+            object-position: center center !important; /* Centrado absoluto para evitar enfoques raros */
             border-radius: 50%; 
             border: 5px solid white; 
             box-shadow: 0 20px 40px rgba(37, 25, 100, 0.15); 
             display: block; 
             margin-left: auto; 
             margin-right: auto; 
-            will-change: transform; 
+            will-change: transform; /* Envía la imagen a procesamiento en GPU */
+            transform: translate3d(0,0,0);
         }
 
         .marquee-wrapper { background-color: var(--primary-brand); color: rgba(255, 255, 255, 0.9); padding: 15px 0; overflow: hidden; width: 110vw; margin-left: -5vw; transform: rotate(-3deg) scale(1.05); margin-top: -60px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); position: relative; z-index: 5; }
@@ -149,7 +154,7 @@
         .btn-apple-secondary:hover { background-color: white; color: var(--primary-brand); }
 
         /* ----------------------------------------------------------- */
-        /* CARDS & PILLS */
+        /* MOBBIN INJECTIONS: CARDS & PILLS */
         /* ----------------------------------------------------------- */
         .apple-card { 
             background: var(--surface-color); border-radius: 24px; box-shadow: 0 4px 24px rgba(0,0,0,0.03); 
@@ -196,7 +201,6 @@
         .mobbin-fab a.primary-action { background: var(--primary-brand); color: white; }
         .mobbin-fab a.primary-action:hover { background: var(--primary-dark); }
 
-        /* Custom Magnetic Cursor */
         @media (min-width: 992px) {
             body { cursor: none; }
             .custom-cursor { position: fixed; width: 8px; height: 8px; background-color: var(--primary-brand); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: opacity 0.3s, transform 0.2s; }
@@ -229,16 +233,9 @@
         .social-link:hover { background-color: white; color: var(--primary-brand); transform: scale(1.1); }
 
         @media (max-width: 1080px) {
-            #about {
-                padding-top: 2rem !important;
-                padding-bottom: 2rem !important;
-            }
-            .profile-img {
-                max-width: 250px !important;
-            }
-            #about .col-lg-5 {
-                margin-bottom: 2rem !important;
-            }
+            #about { padding-top: 2rem !important; padding-bottom: 2rem !important; }
+            .profile-img { max-width: 250px !important; }
+            #about .col-lg-5 { margin-bottom: 2rem !important; }
         }
 
         @media (max-width: 768px) {
@@ -246,6 +243,7 @@
             .name-title { font-size: 2.2rem; margin-bottom: 10px; }
             .hero-subtitle { font-size: 1.2rem; height: auto; min-height: 60px; }
             .hero-section { padding: 130px 0 90px; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 40px), 0 100%); }
+            .profile-img { width: 220px !important; height: 220px !important; }
         }
 
         .navbar-toggler { border: none !important; padding: 0.2rem 0.5rem !important; box-shadow: none !important; }
@@ -283,7 +281,7 @@
     </nav>
 
     <section class="hero-section text-center">
-        <video autoplay loop muted playsinline poster="Jeanpaulgiraldo.png" class="hero-video-bg">
+        <video autoplay loop muted playsinline class="hero-video-bg">
             <source src="Diseño sin título(2).mp4" type="video/mp4">
         </video>
         <div class="hero-overlay"></div>
@@ -510,12 +508,12 @@
             }
             requestAnimationFrame(raf);
 
-            // 2. PARALLAX EN FOTO
+            // 2. OPTIMIZACIÓN EN PARALLAX (Throttling implícito con transform3d)
             const parallaxImg = document.getElementById('parallax-img');
             lenis.on('scroll', (e) => {
                 if(parallaxImg) {
                     const speed = 0.05; 
-                    parallaxImg.style.transform = `translateY(${e.scroll * speed}px)`;
+                    parallaxImg.style.transform = `translate3d(0, ${e.scroll * speed}px, 0)`;
                 }
             });
 
@@ -610,24 +608,32 @@
                 });
             });
 
-            // 5. Navbar Glassmorphism & Floating Action Bar
+            // 5. NAVBAR & FAB (Optimizados con banderas para evitar repintados innecesarios)
             const navbar = document.getElementById('mainNav');
             const fab = document.getElementById('floatingActionBar');
+            let isScrolled = false;
+            let isFabVisible = false;
             
             function handleScrollEvents() {
-                if (window.scrollY > 50) {
+                const scrollY = window.scrollY;
+
+                if (scrollY > 50 && !isScrolled) {
                     navbar.classList.add('scrolled');
-                } else {
+                    isScrolled = true;
+                } else if (scrollY <= 50 && isScrolled) {
                     navbar.classList.remove('scrolled');
+                    isScrolled = false;
                 }
 
-                if (window.scrollY > window.innerHeight * 0.8) {
+                if (scrollY > window.innerHeight * 0.8 && !isFabVisible) {
                     fab.classList.add('visible');
-                } else {
+                    isFabVisible = true;
+                } else if (scrollY <= window.innerHeight * 0.8 && isFabVisible) {
                     fab.classList.remove('visible');
+                    isFabVisible = false;
                 }
             }
-            window.addEventListener('scroll', handleScrollEvents);
+            window.addEventListener('scroll', handleScrollEvents, { passive: true });
             handleScrollEvents();
 
             // 6. ANIMACIONES DE APARICIÓN
