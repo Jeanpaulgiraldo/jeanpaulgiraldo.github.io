@@ -80,7 +80,7 @@
             border-bottom: 1px solid rgba(255,255,255,0.05);
             transition: padding 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             padding: 15px 0;
-            will-change: padding, background-color; 
+            /* Eliminado will-change innecesario para móviles */
         }
         .navbar.scrolled {
             padding: 10px 0;
@@ -172,7 +172,6 @@
             display: block; 
             margin-left: auto; 
             margin-right: auto; 
-            will-change: transform; 
             transform: translate3d(0,0,0);
         }
 
@@ -187,18 +186,16 @@
         .btn-apple-secondary:hover { background-color: white; color: var(--primary-brand); }
 
         /* ----------------------------------------------------------- */
-        /* PIEZA UNIFICADA: FLOATING ACTION BANNER COMPLETAMENTE TRANSPARENTE */
+        /* PIEZA UNIFICADA: FLOATING ACTION BANNER */
         /* ----------------------------------------------------------- */
         .mobbin-fab {
             position: fixed; 
             bottom: 30px; 
             left: 50%; 
             transform: translateX(-50%) translateY(120px);
-            /* Transparencia absoluta + desenfoque de cristal premium */
             background: rgba(255, 255, 255, 0.08); 
             backdrop-filter: saturate(140%) blur(20px); 
             -webkit-backdrop-filter: saturate(140%) blur(20px);
-            /* Borde blanco pulido con brillo de luz */
             border: 2px solid rgba(255, 255, 255, 0.85);
             border-radius: 980px; 
             padding: 8px 14px;
@@ -210,10 +207,8 @@
             transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease, border-color 0.3s, box-shadow 0.3s; 
             opacity: 0; 
             pointer-events: none;
-            will-change: transform, opacity;
         }
         
-        /* Efecto Hover en el contenedor del Banner */
         .mobbin-fab:hover {
             border-color: #ffffff;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 0 25px rgba(255, 255, 255, 0.4);
@@ -226,7 +221,6 @@
             pointer-events: all; 
         }
         
-        /* Enlaces internos completamente transparentes */
         .mobbin-fab a { 
             color: #ffffff; 
             text-decoration: none; 
@@ -242,14 +236,12 @@
             border: 1px solid transparent;
         }
         
-        /* Efecto hover en ítems normales (Flecha y Work) */
         .mobbin-fab a:hover { 
             background: rgba(255, 255, 255, 0.15); 
             color: #ffffff;
             transform: translateY(-1px);
         }
         
-        /* BOTÓN HIRE ME: Completamente transparente con contorno blanco interno */
         .mobbin-fab a.primary-action { 
             background: transparent; 
             color: #ffffff;
@@ -265,7 +257,6 @@
             font-weight: 700;
         }
         
-        /* Separadores blancos finos de la pieza */
         .mobbin-fab .fab-divider {
             width: 1px;
             height: 22px;
@@ -273,7 +264,6 @@
             margin: 0 6px;
         }
 
-        /* Contexto adaptativo automático cuando el banner pasa sobre secciones blancas o claras */
         body:not(.dark-context) .mobbin-fab {
             background: rgba(0, 0, 0, 0.05);
             border-color: var(--primary-brand);
@@ -291,13 +281,21 @@
         .apple-card { 
             background: var(--surface-color); border-radius: 24px; box-shadow: 0 4px 24px rgba(0,0,0,0.03); 
             border: 1px solid rgba(0,0,0,0.04); padding: 35px 25px; height: 100%; 
-            transform-style: preserve-3d; will-change: transform; transition: box-shadow 0.4s ease, transform 0.1s ease;
+            /* Se eliminó transform-style: preserve-3d; y will-change: transform; para optimizar RAM en celulares */
+            transition: box-shadow 0.4s ease, transform 0.1s ease;
             position: relative; overflow: hidden;
         }
         .apple-card:hover { box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1); z-index: 10; border: 1px solid rgba(0,0,0,0.08); }
-        .apple-card h5, .apple-card p, .skill-badge { transform: translateZ(20px); transition: transform 0.3s ease; }
-        .card-icon { font-size: 2.5rem; color: var(--primary-brand); margin-bottom: 20px; transform: translateZ(40px); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); display: inline-block; }
-        .apple-card:hover .card-icon { transform: translateZ(50px) scale(1.1); }
+        .apple-card h5, .apple-card p, .skill-badge { transition: transform 0.3s ease; }
+        .card-icon { font-size: 2.5rem; color: var(--primary-brand); margin-bottom: 20px; transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); display: inline-block; }
+        
+        /* 3D effects restricted to desktop to save performance */
+        @media (min-width: 992px) {
+            .apple-card { transform-style: preserve-3d; }
+            .apple-card h5, .apple-card p, .skill-badge { transform: translateZ(20px); }
+            .card-icon { transform: translateZ(40px); }
+            .apple-card:hover .card-icon { transform: translateZ(50px) scale(1.1); }
+        }
 
         .apple-card::after {
             content: 'Explore ➔'; position: absolute; bottom: -60px; left: 0; width: 100%; padding: 15px 0;
@@ -328,9 +326,15 @@
             body.cursor-hover .custom-cursor { transform: translate(-50%, -50%) scale(0.5); opacity: 0.5; }
         }
 
-        .skill-badge { background-color: #f5f5f7; color: var(--primary-brand); font-size: 0.85rem; font-weight: 600; padding: 8px 16px; margin: 4px; border-radius: 20px; display: inline-block; border: 1px solid transparent; opacity: 0; transform: scale(0.5) translateZ(20px); transition: opacity 0.4s ease, transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s, color 0.3s, box-shadow 0.3s; }
-        .skill-badge.pop-active { opacity: 1; transform: scale(1) translateZ(20px); }
-        .skill-badge.pop-active:hover { background-color: var(--accent-vivid); color: white; box-shadow: 0 8px 20px rgba(0, 113, 227, 0.3); transform: translateZ(30px) translateY(-3px) scale(1.05); }
+        .skill-badge { background-color: #f5f5f7; color: var(--primary-brand); font-size: 0.85rem; font-weight: 600; padding: 8px 16px; margin: 4px; border-radius: 20px; display: inline-block; border: 1px solid transparent; opacity: 0; transform: scale(0.5); transition: opacity 0.4s ease, transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s, color 0.3s, box-shadow 0.3s; }
+        
+        @media (min-width: 992px) { .skill-badge { transform: scale(0.5) translateZ(20px); } }
+        
+        .skill-badge.pop-active { opacity: 1; transform: scale(1); }
+        @media (min-width: 992px) { .skill-badge.pop-active { transform: scale(1) translateZ(20px); } }
+        
+        .skill-badge.pop-active:hover { background-color: var(--accent-vivid); color: white; box-shadow: 0 8px 20px rgba(0, 113, 227, 0.3); transform: translateY(-3px) scale(1.05); }
+        @media (min-width: 992px) { .skill-badge.pop-active:hover { transform: translateZ(30px) translateY(-3px) scale(1.05); } }
 
         .section-title { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 2rem; text-align: center; color: var(--primary-dark); }
         .text-muted-apple { color: var(--text-muted) !important; }
@@ -347,7 +351,6 @@
         .reveal-scale { transform: scale(0.9); }
         .reveal.active, .reveal-left.active, .reveal-right.active, .reveal-scale.active { opacity: 1; transform: translate(0) scale(1); }
 
-        /* SECCIÓN MODIFICADA: Agregamos relleno extra abajo para permitir un scroll más profundo */
         footer { background-color: var(--primary-dark); color: white; border-top: 1px solid rgba(0,0,0,0.05); padding-bottom: 100px !important; }
         
         .social-link { width: 50px; height: 50px; line-height: 48px; display: inline-block; border-radius: 50%; border: 1px solid rgba(255,255,255,0.2); color: white; font-size: 1.2rem; transition: all 0.3s ease; text-decoration: none; margin: 0 10px; }
@@ -652,8 +655,11 @@
 
             // 2. OPTIMIZACIÓN EN PARALLAX (Throttling implícito con transform3d)
             const parallaxImg = document.getElementById('parallax-img');
+            let isMobile = window.innerWidth < 768;
+            
             lenis.on('scroll', (e) => {
-                if(parallaxImg) {
+                // Desactivamos parallax en movil estricto para ganar FPS
+                if(parallaxImg && !isMobile) {
                     const speed = 0.05; 
                     parallaxImg.style.transform = `translate3d(0, ${e.scroll * speed}px, 0)`;
                 }
@@ -729,28 +735,30 @@
             
             setTimeout(typeMainTitle, 500); 
 
-            // 4. EFECTO 3D EN TARJETAS
-            const cards = document.querySelectorAll('.apple-card:not([style*="transform: none"])');
-            cards.forEach(card => {
-                card.addEventListener('mousemove', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left; 
-                    const y = e.clientY - rect.top;  
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
-                    const rotateX = ((y - centerY) / centerY) * -6; 
-                    const rotateY = ((x - centerX) / centerX) * 6;
-                    card.style.transition = 'none'; 
-                    card.style.transform = `perspective(1000px) scale(1.02) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            // 4. EFECTO 3D EN TARJETAS (Optimizando para no activar listeners en Móvil)
+            if (window.innerWidth >= 992) {
+                const cards = document.querySelectorAll('.apple-card:not([style*="transform: none"])');
+                cards.forEach(card => {
+                    card.addEventListener('mousemove', (e) => {
+                        const rect = card.getBoundingClientRect();
+                        const x = e.clientX - rect.left; 
+                        const y = e.clientY - rect.top;  
+                        const centerX = rect.width / 2;
+                        const centerY = rect.height / 2;
+                        const rotateX = ((y - centerY) / centerY) * -6; 
+                        const rotateY = ((x - centerX) / centerX) * 6;
+                        card.style.transition = 'none'; 
+                        card.style.transform = `perspective(1000px) scale(1.02) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                    });
+                    
+                    card.addEventListener('mouseleave', () => {
+                        card.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease';
+                        card.style.transform = 'perspective(1000px) scale(1) rotateX(0deg) rotateY(0deg)';
+                    });
                 });
-                
-                card.addEventListener('mouseleave', () => {
-                    card.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease';
-                    card.style.transform = 'perspective(1000px) scale(1) rotateX(0deg) rotateY(0deg)';
-                });
-            });
+            }
 
-            // 5. NAVBAR & BANNER FLOTANTE TRANSPARENTE INTELLIGENT SCROLL
+            // 5. NAVBAR & BANNER FLOTANTE TRANSPARENTE INTELLIGENT SCROLL (OPTIMIZADO)
             const navbar = document.getElementById('mainNav');
             const fab = document.getElementById('floatingActionBar');
             const footer = document.getElementById('contact');
@@ -777,20 +785,25 @@
                     fab.classList.remove('visible');
                     isFabVisible = false;
                 }
-
-                // DETECCIÓN DE INTERSECCIÓN CON EL FOOTER O ÁREAS OSCURAS (Inversión contextual del Banner)
-                if (footer) {
-                    const footerBounds = footer.getBoundingClientRect();
-                    // Si el tope del footer entra en la zona inferior de la pantalla donde se sitúa el FAB
-                    if (footerBounds.top < window.innerHeight - 30) {
-                        document.body.classList.add('dark-context');
-                    } else {
-                        document.body.classList.remove('dark-context');
-                    }
-                }
             }
+            
             window.addEventListener('scroll', handleScrollEvents, { passive: true });
             handleScrollEvents();
+
+            // OPTIMIZACIÓN CRÍTICA PARA MÓVIL: Evitar Layout Thrashing (getBoundingClientRect en el scroll)
+            // Reemplazamos la detección manual del footer con IntersectionObserver nativo
+            if (footer) {
+                const footerObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            document.body.classList.add('dark-context');
+                        } else {
+                            document.body.classList.remove('dark-context');
+                        }
+                    });
+                }, { rootMargin: "0px 0px -30px 0px" });
+                footerObserver.observe(footer);
+            }
 
             // 6. ANIMACIONES DE APARICIÓN
             const revealElements = document.querySelectorAll(".reveal, .reveal-left, .reveal-right, .reveal-scale");
@@ -824,7 +837,7 @@
             // 7. Menú móvil
             const navLinks = document.querySelectorAll('.nav-link');
             const menuToggle = document.getElementById('navbarNav');
-            if (menuToggle && bootstrap.Collapse) {
+            if (menuToggle && window.bootstrap && window.bootstrap.Collapse) {
                 const bsCollapse = new bootstrap.Collapse(menuToggle, {toggle: false});
                 navLinks.forEach((l) => {
                     l.addEventListener('click', () => {
@@ -839,7 +852,7 @@
             const yearEl = document.getElementById('currentYear');
             if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-            // 9. MÁQUINA DE ESCRIBIR ABOUT
+            // 9. MÁQUINA DE ESCRIBIR ABOUT (Optimizada velocidad de frame)
             const parrafosEscribir = document.querySelectorAll('.escribir-automatico');
             const observerParrafos = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
@@ -851,6 +864,7 @@
                         elemento.classList.add('escribiendo'); 
 
                         let i = 0;
+                        // Cambiado de 15ms a 30ms para no saturar el hilo principal en móviles
                         const intervalo = setInterval(() => {
                             if (i < textoOriginal.length) {
                                 elemento.textContent += textoOriginal.charAt(i);
@@ -859,7 +873,7 @@
                                 clearInterval(intervalo);
                                 setTimeout(() => elemento.classList.remove('escribiendo'), 1000);
                             }
-                        }, 15); 
+                        }, 30); 
                         observer.unobserve(elemento);
                     }
                 });
@@ -924,7 +938,7 @@
                 });
             }
 
-            // OCULTAR ESQUELETO DE MANERA FLUIDA AL TERMINAR LA CARGA COMPLETA (ESTILO FACEBOOK)
+            // OCULTAR ESQUELETO DE MANERA FLUIDA AL TERMINAR LA CARGA COMPLETA
             window.addEventListener('load', function() {
                 const loader = document.getElementById('skeleton-loader');
                 if (loader) {
