@@ -29,6 +29,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
     
+    <link rel="stylesheet" href="style.css">
+    
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
 
     <script type="application/ld+json">
@@ -50,293 +52,6 @@
       }
     }
     </script>
-
-    <style>
-        :root {
-            --primary-brand: #251964;
-            --primary-dark: #160e40;
-            --primary-light: #3e2ca6;
-            --bg-color: #fbfbfd;
-            --surface-color: #ffffff;
-            --text-main: #1d1d1f;
-            --text-muted: #86868b;
-            --accent-vivid: #0071e3; 
-            --neon-green: #34c759;
-        }
-
-        html, body {
-            max-width: 100vw !important;
-            overflow-x: hidden !important;
-            scroll-padding-top: 85px;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
-            position: relative;
-        }
-
-        /* Hardware Acceleration Hinting for WebKit Threading */
-        .reveal, .reveal-left, .reveal-right, .reveal-scale, .apple-card {
-            will-change: transform, opacity;
-        }
-
-        /* ----------------------------------------------------------- */
-        /* HIGH-PERFORMANCE SKELETON LAYER */
-        /* ----------------------------------------------------------- */
-        #skeleton-loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: #fbfbfd;
-            z-index: 99999;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s ease;
-        }
-
-        .shimmer {
-            background: linear-gradient(90deg, #eff1f3 4%, #e2e5e7 25%, #eff1f3 36%);
-            background-size: 200% 100%;
-            animation: shimmerAnimation 1.2s infinite linear;
-        }
-
-        @keyframes shimmerAnimation {
-            0% { background-position: -100% 0; }
-            100% { background-position: 100% 0; }
-        }
-
-        .skeleton-nav { width: 100%; height: 70px; margin-bottom: 40px; }
-        .skeleton-hero-title { width: 45%; height: 60px; margin: 0 auto 20px; border-radius: 12px; }
-        .skeleton-hero-subtitle { width: 60%; height: 30px; margin: 0 auto 50px; border-radius: 8px; }
-
-        /* ----------------------------------------------------------- */
-        /* STRUCTURED NAVIGATION COMPONENTS */
-        /* ----------------------------------------------------------- */
-        .navbar {
-            background-color: rgba(22, 14, 64, 0.85) !important; 
-            backdrop-filter: saturate(180%) blur(20px);
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            transition: padding 0.3s ease;
-            padding: 15px 0;
-        }
-        .navbar.scrolled {
-            padding: 10px 0;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-        }
-        
-        .navbar-brand { 
-            font-weight: 800; 
-            letter-spacing: -0.5px; 
-            background: linear-gradient(90deg, #ffffff 0%, #8ab4f8 40%, #ffffff 80%);
-            background-size: 200% auto;
-            color: transparent !important;
-            -webkit-background-clip: text;
-            background-clip: text;
-            animation: textShine 4s linear infinite;
-        }
-        @keyframes textShine { to { background-position: center 200%; } }
-
-        .nav-link { color: rgba(255, 255, 255, 0.8) !important; font-size: 0.95rem; font-weight: 400; transition: color 0.2s; }
-        .nav-link:hover { color: white !important; }
-
-        /* ----------------------------------------------------------- */
-        /* CORE HERO TOPOLOGY */
-        /* ----------------------------------------------------------- */
-        .hero-section {
-            color: white;
-            padding: 180px 0 130px;
-            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 60px), 0 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero-video-bg {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            z-index: 0;
-            transform: translate(-50%, -50%);
-            object-fit: cover;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            background: linear-gradient(-45deg, rgba(22, 14, 64, 0.85), rgba(37, 25, 100, 0.75), rgba(62, 44, 166, 0.75), rgba(26, 16, 80, 0.85));
-            background-size: 400% 400%;
-            animation: gradientLiquid 12s ease infinite;
-        }
-
-        @keyframes gradientLiquid { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-
-        .name-title { font-size: 3.5rem; font-weight: 700; letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 20px; min-height: 1.2em; display: inline-block; }
-        .hero-subtitle { font-size: 1.5rem; color: rgba(255, 255, 255, 0.85); font-weight: 400; max-width: 800px; margin: 0 auto; letter-spacing: -0.015em; height: 70px; }
-        #hero-buttons { opacity: 0; transform: translateY(15px); transition: opacity 0.6s ease, transform 0.6s ease; }
-        #hero-buttons.show { opacity: 1; transform: translateY(0); }
-        
-        .cursor-blink { border-right: 2px solid white; padding-right: 5px; animation: border-blink 1s step-end infinite; }
-        .escribiendo-blanco::after { content: '|'; animation: opacity-blink 1s step-end infinite; color: white; margin-left: 2px; font-weight: 300; }
-        .escribiendo::after { content: '|'; animation: opacity-blink 1s step-end infinite; color: var(--primary-brand); margin-left: 2px; }
-        .escribir-automatico { visibility: hidden; }
-
-        @keyframes border-blink { 0%, 100% { border-color: transparent; } 50% { border-color: white; } }
-        @keyframes opacity-blink { 0%, 100% { opacity: 0; } 50% { opacity: 1; } }
-
-        .profile-img { width: 280px !important; height: 280px !important; aspect-ratio: 1 / 1 !important; object-fit: cover !important; border-radius: 50%; border: 5px solid white; box-shadow: 0 20px 40px rgba(37, 25, 100, 0.15); display: block; margin-left: auto; margin-right: auto; }
-
-        .marquee-wrapper { background-color: var(--primary-brand); color: rgba(255, 255, 255, 0.9); padding: 15px 0; overflow: hidden; width: 110vw; margin-left: -5vw; transform: rotate(-3deg) scale(1.05); margin-top: -60px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); position: relative; z-index: 5; }
-        .marquee-content { display: flex; white-space: nowrap; width: max-content; animation: scrollMarquee 25s linear infinite; }
-        .marquee-content span { font-size: 1.2rem; font-weight: 700; letter-spacing: 2px; margin: 0 30px; }
-        @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-        .btn-apple-primary { background-color: white; color: var(--primary-brand); border-radius: 980px; padding: 12px 28px; font-size: 17px; font-weight: 600; border: none; text-decoration: none; transition: all 0.3s ease; display: inline-block; cursor: pointer; }
-        .btn-apple-primary:hover { background-color: #f0f0f0; transform: translateY(-2px); }
-        .btn-apple-secondary { background-color: transparent; color: white; border-radius: 980px; padding: 11px 28px; font-size: 17px; font-weight: 400; border: 1px solid rgba(255,255,255,0.6); text-decoration: none; transition: all 0.3s ease; display: inline-block; cursor: pointer;}
-        .btn-apple-secondary:hover { background-color: white; color: var(--primary-brand); }
-
-        /* ----------------------------------------------------------- */
-        /* FLOATING NAVIGATION LINK INTERFACE */
-        /* ----------------------------------------------------------- */
-        .mobbin-fab {
-            position: fixed; 
-            bottom: 30px; 
-            left: 50%; 
-            transform: translateX(-50%) translateY(120px);
-            background: rgba(255, 255, 255, 0.08); 
-            backdrop-filter: saturate(140%) blur(20px); 
-            -webkit-backdrop-filter: saturate(140%) blur(20px);
-            border: 2px solid rgba(255, 255, 255, 0.85);
-            border-radius: 980px; 
-            padding: 8px 14px;
-            display: flex; 
-            align-items: center;
-            gap: 4px; 
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease; 
-            opacity: 0; 
-            pointer-events: none;
-        }
-        .mobbin-fab.visible { transform: translateX(-50%) translateY(0); opacity: 1; pointer-events: all; }
-        .mobbin-fab a { color: #ffffff; text-decoration: none; font-weight: 500; font-size: 0.95rem; padding: 10px 22px; border-radius: 980px; display: flex; align-items: center; gap: 8px; }
-        .mobbin-fab a.primary-action { font-weight: 600; border: 1.5px solid rgba(255, 255, 255, 0.7); }
-        .mobbin-fab .fab-divider { width: 1px; height: 22px; background-color: rgba(255, 255, 255, 0.4); margin: 0 6px; }
-
-        body:not(.dark-context) .mobbin-fab { background: rgba(255, 255, 255, 0.94); border-color: var(--primary-brand); }
-        body:not(.dark-context) .mobbin-fab a { color: var(--primary-dark); }
-        body:not(.dark-context) .mobbin-fab .fab-divider { background-color: rgba(22, 14, 64, 0.2); }
-        body:not(.dark-context) .mobbin-fab a.primary-action { border-color: var(--primary-brand); color: var(--primary-brand); }
-
-        /* ----------------------------------------------------------- */
-        /* STRUCTURAL UI CONTAINERS (CARDS) */
-        /* ----------------------------------------------------------- */
-        .apple-card { 
-            background: var(--surface-color); border-radius: 24px; box-shadow: 0 4px 24px rgba(0,0,0,0.03); 
-            border: 1px solid rgba(0,0,0,0.04); padding: 35px 25px; height: 100%; 
-            transition: box-shadow 0.3s ease, transform 0.3s ease;
-            position: relative; overflow: hidden;
-        }
-        .apple-card:hover { box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06); }
-        .card-icon { font-size: 2.5rem; color: var(--primary-brand); margin-bottom: 20px; display: inline-block; }
-        
-        /* GPU Accelerated Transform Matrices restricted to Desktop nodes */
-        @media (min-width: 992px) {
-            .apple-card { transform-style: preserve-3d; }
-            .apple-card h5, .apple-card p, .skill-badge { transform: translateZ(20px); }
-            .navbar-brand:hover { transform: scale(1.05); }
-            .name-title:hover { transform: scale(1.03); text-shadow: 0 10px 30px rgba(255, 255, 255, 0.3); }
-            .apple-card:hover .card-icon { transform: translateZ(40px) scale(1.05); }
-            .apple-card::after {
-                content: 'Explore ➔'; position: absolute; bottom: -60px; left: 0; width: 100%; padding: 15px 0;
-                background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-                color: var(--primary-brand); font-weight: 700; font-size: 0.9rem; text-align: center;
-                border-top: 1px solid rgba(0,0,0,0.05); transition: bottom 0.3s ease; opacity: 0; pointer-events: none;
-            }
-            .apple-card:hover::after { bottom: 0; opacity: 1; }
-        }
-
-        .mobbin-filters { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 2.5rem; }
-        .filter-pill { 
-            background-color: var(--bg-color); color: var(--text-muted); border: 1px solid rgba(0,0,0,0.05); 
-            border-radius: 980px; padding: 8px 20px; font-size: 0.9rem; font-weight: 600; 
-            transition: all 0.2s ease; cursor: pointer;
-        }
-        .filter-pill.active { background-color: var(--primary-brand); color: white; border-color: var(--primary-brand); }
-
-        .project-item { transition: opacity 0.3s ease, transform 0.3s ease; }
-        .project-item.hide { display: none !important; opacity: 0; }
-
-        /* ----------------------------------------------------------- */
-        /* DYNAMIC MONITORING PANELS */
-        /* ----------------------------------------------------------- */
-        .dashboard-panel {
-            background: #ffffff; border-radius: 28px; border: 1px solid rgba(0,0,0,0.05);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.02); padding: 30px; margin-top: 2rem;
-        }
-        .metric-node { border-right: 1px solid rgba(0,0,0,0.05); text-align: center; padding: 15px; }
-        .metric-node:last-child { border-right: none; }
-        .metric-val { font-size: 2.2rem; font-weight: 800; color: var(--primary-brand); line-height: 1; }
-        
-        .testimonial-bubble { background: #f5f5f7; border-radius: 24px; padding: 30px; height: 100%; }
-        .client-avatar { width: 45px; height: 45px; border-radius: 50%; background: var(--primary-brand); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; }
-
-        @media (min-width: 992px) {
-            body { cursor: none; }
-            .custom-cursor { position: fixed; width: 8px; height: 8px; background-color: var(--primary-brand); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); }
-            .custom-cursor-follower { position: fixed; width: 40px; height: 40px; border: 1px solid rgba(37, 25, 100, 0.3); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: width 0.2s, height 0.2s, background-color 0.2s, border-color 0.2s; }
-            body.cursor-hover .custom-cursor-follower { width: 70px; height: 70px; background-color: rgba(37, 25, 100, 0.05); border-color: transparent; }
-        }
-
-        .skill-badge { background-color: #f5f5f7; color: var(--primary-brand); font-size: 0.85rem; font-weight: 600; padding: 8px 16px; margin: 4px; border-radius: 20px; display: inline-block; opacity: 0; transform: scale(0.8); transition: opacity 0.3s ease, transform 0.3s ease; }
-        .skill-badge.pop-active { opacity: 1; transform: scale(1); }
-
-        .section-title { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 2rem; text-align: center; color: var(--primary-dark); }
-        .text-muted-apple { color: var(--text-muted) !important; }
-        .text-brand { color: var(--primary-brand) !important; }
-        
-        .cert-list li { padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.05); font-size: 0.95rem; }
-
-        .reveal, .reveal-left, .reveal-right, .reveal-scale { opacity: 0; transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
-        .reveal { transform: translateY(30px); }
-        .reveal-left { transform: translateX(-30px); }
-        .reveal-right { transform: translateX(30px); }
-        .reveal-scale { transform: scale(0.95); }
-        .reveal.active, .reveal-left.active, .reveal-right.active, .reveal-scale.active { opacity: 1; transform: translate(0) scale(1); }
-
-        footer { background-color: var(--primary-dark); color: white; border-top: 1px solid rgba(0,0,0,0.05); padding-bottom: 100px !important; }
-        .social-link { width: 50px; height: 50px; line-height: 48px; display: inline-block; border-radius: 50%; border: 1px solid rgba(255,255,255,0.2); color: white; font-size: 1.2rem; transition: all 0.2s ease; text-decoration: none; margin: 0 10px; }
-
-        @media (max-width: 1080px) {
-            #about { padding-top: 2rem !important; padding-bottom: 2rem !important; }
-            .profile-img { max-width: 250px !important; }
-        }
-
-        @media (max-width: 768px) {
-            .navbar { padding: 8px 0; }
-            .name-title { font-size: 2.2rem; margin-bottom: 10px; }
-            .hero-subtitle { font-size: 1.2rem; height: auto; min-height: 60px; }
-            .hero-section { padding: 130px 0 90px; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 40px), 0 100%); }
-            .profile-img { width: 220px !important; height: 220px !important; }
-            .mobbin-fab a { padding: 8px 14px; font-size: 0.85rem; }
-            .metric-node { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.05); }
-            .metric-node:last-child { border-bottom: none; }
-        }
-        .navbar-toggler { border: none !important; box-shadow: none !important; }
-        .navbar-toggler-icon { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='%23ffffff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.5' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") !important; }
-    </style>
 </head>
 <body>
 
@@ -379,7 +94,7 @@
     </nav>
 
     <section class="hero-section text-center">
-        <video autoplay loop muted playsinline preload="auto" poster="hero-poster.jpg" class="hero-video-bg">
+        <video autoplay loop muted playsinline preload="auto" poster="hero-poster.jpg" class="hero-video-bg" id="hero-bg-video">
             <source src="Diseño sin título(2).mp4" type="video/mp4">
         </video>
         <div class="hero-overlay"></div>
@@ -673,7 +388,6 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             
-            // Dynamic media query flag matrix
             const isDesktop = window.matchMedia("(min-width: 992px)").matches;
 
             // 1. LENIS KINETIC SMOOTH SCROLL ROUTINE
@@ -682,7 +396,7 @@
                 easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
                 direction: 'vertical',
                 smooth: true,
-                smoothTouch: false, // Guardrail: forces standard thread optimization on touch screens
+                smoothTouch: false,
             });
 
             function raf(time) {
@@ -758,12 +472,17 @@
             
             setTimeout(typeMainTitle, 300); 
 
-            // 4. PERSPECTIVE PERSISTENCE TRANSLATION MATRICES (Desktop Enforced Only)
+            // 4. PERSPECTIVE TRANSLATION MATRICES & SPECULAR MOUSE LIGHT TRACKING
             if (isDesktop) {
                 const cards = document.querySelectorAll('.apple-card');
                 cards.forEach(card => {
                     card.addEventListener('mousemove', (e) => {
                         const rect = card.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        card.style.setProperty('--mouse-x', `${x}px`);
+                        card.style.setProperty('--mouse-y', `${y}px`);
+
                         const rotateX = ((e.clientY - rect.top - (rect.height/2)) / (rect.height/2)) * -6; 
                         const rotateY = ((e.clientX - rect.left - (rect.width/2)) / (rect.width/2)) * 6;
                         card.style.transform = `perspective(1000px) scale(1.02) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
@@ -772,6 +491,18 @@
                         card.style.transform = 'perspective(1000px) scale(1) rotateX(0deg) rotateY(0deg)';
                     });
                 });
+            }
+
+            // ASYNCHRONOUS HERO VIDEO LOAD STATE GUARDRAIL
+            const heroBgVideo = document.getElementById('hero-bg-video');
+            if (heroBgVideo) {
+                if (heroBgVideo.readyState >= 3) {
+                    heroBgVideo.classList.add('video-loaded');
+                } else {
+                    heroBgVideo.addEventListener('loadeddata', () => {
+                        heroBgVideo.classList.add('video-loaded');
+                    });
+                }
             }
 
             // 5. NAV & FAB VISIBILITY MANAGERS (Passive Scroll Trackers)
@@ -850,9 +581,7 @@
                 observerParrafos.observe(p);
             });
 
-            // -----------------------------------------------------------
             // 8. O(1) COMPLEXITY IN-MEMORY DATA STORAGE MAP MATRIX
-            // -----------------------------------------------------------
             const projectMap = new Map();
             document.querySelectorAll('.project-item').forEach(item => {
                 projectMap.set(item.id, {
