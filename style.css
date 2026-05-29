@@ -122,7 +122,7 @@ html, body {
     transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
     
     /* Subimos un poco el contraste nativo para que las luces no se vean grises */
-    filter: brightness(70%) contrast(70%) saturate(170%);
+    filter: brightness(70%) contrast(85%) saturate(170%);
 }
 
 .hero-video-bg.video-loaded {
