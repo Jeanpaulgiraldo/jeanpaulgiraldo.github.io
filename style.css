@@ -68,9 +68,8 @@ html, body {
    STRUCTURED NAVIGATION COMPONENTS
    ========================================================================== */
 .navbar {
-    background-color: rgba(22, 14, 64, 0.85) !important; 
-    backdrop-filter: saturate(180%) blur(20px);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    /* OPTIMIZACIÓN MÓVIL #1: Color sólido en móviles, sin blur */
+    background-color: rgba(22, 14, 64, 0.98) !important; 
     border-bottom: 1px solid rgba(255,255,255,0.05);
     transition: padding 0.3s ease;
     padding: 15px 0;
@@ -78,6 +77,15 @@ html, body {
 .navbar.scrolled {
     padding: 10px 0;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Activar blur solo en pantallas grandes (Desktop) */
+@media (min-width: 992px) {
+    .navbar {
+        background-color: rgba(22, 14, 64, 0.85) !important; 
+        backdrop-filter: saturate(180%) blur(20px);
+        -webkit-backdrop-filter: saturate(180%) blur(20px);
+    }
 }
 
 .navbar-brand { 
@@ -120,8 +128,6 @@ html, body {
     object-fit: cover;
     opacity: 0; 
     transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-    
-    /* Subimos un poco el contraste nativo para que las luces no se vean grises */
     filter: brightness(70%) contrast(85%) saturate(170%);
 }
 
@@ -137,10 +143,16 @@ html, body {
     width: 100%;
     height: 100%;
     z-index: 1;
-    /* Inyectamos tu color sólido directamente */
-    background-color: #3e2ca6;
-    /* Esta propiedad fuerza a que todos los píxeles del video asimilen el color #3e2ca6 */
-    mix-blend-mode: color; 
+    /* OPTIMIZACIÓN MÓVIL #2: Tinte sólido con opacidad en móviles */
+    background-color: rgba(62, 44, 166, 0.85);
+}
+
+/* Activar mix-blend-mode avanzado solo en Desktop */
+@media (min-width: 992px) {
+    .hero-overlay {
+        background-color: #3e2ca6;
+        mix-blend-mode: color; 
+    }
 }
 
 /* CAPA 2: VIÑETA RADIAL CON TU COLOR */
@@ -152,8 +164,6 @@ html, body {
     width: 100%;
     height: 100%;
     z-index: 2;
-    /* Usamos tu color #3e2ca6 convertido a RGBA (62, 44, 166) para la sombra de los bordes. 
-       El centro se mantiene 100% transparente para que el video brille. */
     background: radial-gradient(circle at center, rgba(62, 44, 166, 0) 30%, rgba(22, 14, 64, 0.90) 100%);
     pointer-events: none;
 }
@@ -180,7 +190,15 @@ html, body {
 .profile-img { width: 280px !important; height: 280px !important; aspect-ratio: 1 / 1 !important; object-fit: cover !important; border-radius: 50%; border: 5px solid white; box-shadow: 0 20px 40px rgba(37, 25, 100, 0.15); display: block; margin-left: auto; margin-right: auto; }
 
 .marquee-wrapper { background-color: var(--primary-brand); color: rgba(255, 255, 255, 0.9); padding: 15px 0; overflow: hidden; width: 110vw; margin-left: -5vw; transform: rotate(-3deg) scale(1.05); margin-top: -60px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); position: relative; z-index: 5; }
-.marquee-content { display: flex; white-space: nowrap; width: max-content; animation: scrollMarquee 25s linear infinite; }
+.marquee-content { 
+    display: flex; 
+    white-space: nowrap; 
+    width: max-content; 
+    animation: scrollMarquee 25s linear infinite; 
+    /* OPTIMIZACIÓN MÓVIL #3: Aceleración por Hardware forzada */
+    will-change: transform;
+    transform: translateZ(0);
+}
 .marquee-content span { font-size: 1.2rem; font-weight: 700; letter-spacing: 2px; margin: 0 30px; }
 @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
@@ -197,10 +215,9 @@ html, body {
     bottom: 30px; 
     left: 50%; 
     transform: translateX(-50%) translateY(120px);
-    background: rgba(255, 255, 255, 0.08); 
-    backdrop-filter: saturate(140%) blur(20px); 
-    -webkit-backdrop-filter: saturate(140%) blur(20px);
-    border: 2px solid rgba(255, 255, 255, 0.85);
+    /* OPTIMIZACIÓN MÓVIL #4: Sin blur, fondo completamente opaco */
+    background: rgba(255, 255, 255, 0.98); 
+    border: 2px solid rgba(22, 14, 64, 0.2);
     border-radius: 980px; 
     padding: 8px 14px;
     display: flex; 
@@ -212,15 +229,32 @@ html, body {
     opacity: 0; 
     pointer-events: none;
 }
-.mobbin-fab.visible { transform: translateX(-50%) translateY(0); opacity: 1; pointer-events: all; }
-.mobbin-fab a { color: #ffffff; text-decoration: none; font-weight: 500; font-size: 0.95rem; padding: 10px 22px; border-radius: 980px; display: flex; align-items: center; gap: 8px; }
-.mobbin-fab a.primary-action { font-weight: 600; border: 1.5px solid rgba(255, 255, 255, 0.7); }
-.mobbin-fab .fab-divider { width: 1px; height: 22px; background-color: rgba(255, 255, 255, 0.4); margin: 0 6px; }
 
-body:not(.dark-context) .mobbin-fab { background: rgba(255, 255, 255, 0.94); border-color: var(--primary-brand); }
-body:not(.dark-context) .mobbin-fab a { color: var(--primary-dark); }
-body:not(.dark-context) .mobbin-fab .fab-divider { background-color: rgba(22, 14, 64, 0.2); }
-body:not(.dark-context) .mobbin-fab a.primary-action { border-color: var(--primary-brand); color: var(--primary-brand); }
+@media (min-width: 992px) {
+    .mobbin-fab {
+        background: rgba(255, 255, 255, 0.08); 
+        backdrop-filter: saturate(140%) blur(20px); 
+        -webkit-backdrop-filter: saturate(140%) blur(20px);
+        border: 2px solid rgba(255, 255, 255, 0.85);
+    }
+}
+
+.mobbin-fab.visible { transform: translateX(-50%) translateY(0); opacity: 1; pointer-events: all; }
+.mobbin-fab a { color: var(--primary-dark); text-decoration: none; font-weight: 500; font-size: 0.95rem; padding: 10px 22px; border-radius: 980px; display: flex; align-items: center; gap: 8px; }
+.mobbin-fab a.primary-action { font-weight: 600; border: 1.5px solid var(--primary-brand); color: var(--primary-brand); }
+.mobbin-fab .fab-divider { width: 1px; height: 22px; background-color: rgba(22, 14, 64, 0.2); margin: 0 6px; }
+
+/* Invertir colores en Desktop cuando no es modo oscuro (solo aplica si tiene blur) */
+@media (min-width: 992px) {
+    .mobbin-fab a { color: #ffffff; }
+    .mobbin-fab a.primary-action { border-color: rgba(255, 255, 255, 0.7); color: #ffffff; }
+    .mobbin-fab .fab-divider { background-color: rgba(255, 255, 255, 0.4); }
+    
+    body:not(.dark-context) .mobbin-fab { background: rgba(255, 255, 255, 0.94); border-color: var(--primary-brand); }
+    body:not(.dark-context) .mobbin-fab a { color: var(--primary-dark); }
+    body:not(.dark-context) .mobbin-fab .fab-divider { background-color: rgba(22, 14, 64, 0.2); }
+    body:not(.dark-context) .mobbin-fab a.primary-action { border-color: var(--primary-brand); color: var(--primary-brand); }
+}
 
 /* ==========================================================================
    STRUCTURAL PREMIUM UI INTERACTIVE CARDS (SPECULAR GLOW)
@@ -240,18 +274,16 @@ body:not(.dark-context) .mobbin-fab a.primary-action { border-color: var(--prima
 .card-icon { font-size: 2.5rem; color: var(--primary-brand); margin-bottom: 20px; display: inline-block; transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
 
 /* Capa de Reflejo de Luz Dinámica (Specular Glow Effect) */
-.apple-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: radial-gradient(800px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(37, 25, 100, 0.06), transparent 45%);
-    z-index: 3;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-}
-
-/* Matrices de Transformación 3D para Desktop Avanzado */
 @media (min-width: 992px) {
+    .apple-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: radial-gradient(800px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(37, 25, 100, 0.06), transparent 45%);
+        z-index: 3;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
     .apple-card { transform-style: preserve-3d; }
     .apple-card h5, .apple-card p, .skill-badge, .cert-list { transform: translateZ(24px); }
     .navbar-brand:hover { transform: scale(1.05); }
@@ -281,7 +313,6 @@ body:not(.dark-context) .mobbin-fab a.primary-action { border-color: var(--prima
     display: inline-block; 
     opacity: 0; 
     transform: scale(0.8); 
-    /* cubic-bezier elástico que simula comportamiento físico real */
     transition: opacity 0.4s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) !important; 
 }
 .skill-badge.pop-active { opacity: 1; transform: scale(1); }
@@ -358,6 +389,11 @@ footer { background-color: var(--primary-dark); color: white; border-top: 1px so
     .mobbin-fab a { padding: 8px 14px; font-size: 0.85rem; }
     .metric-node { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.05); }
     .metric-node:last-child { border-bottom: none; }
+}
+
+#about, #skills, #projects, #cases, #experience, footer {
+    content-visibility: auto;
+    contain-intrinsic-size: 1000px;
 }
 .navbar-toggler { border: none !important; box-shadow: none !important; }
 .navbar-toggler-icon { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='%23ffffff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.5' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") !important; }
