@@ -55,6 +55,9 @@ function GlobalStyleSheet() {
           display: flex;
           width: max-content;
           animation: marqueeScroll 25s linear infinite;
+          /* OPTIMIZACIÓN MÓVIL #3: Aceleración por Hardware forzada */
+          will-change: transform;
+          transform: translateZ(0);
         }
         @keyframes textShineEffect {
           from { background-position: 0% center; }
@@ -202,7 +205,8 @@ function GlobalNavigationBar({ isScrolled }) {
   return (
     <nav 
       className={`fixed top-0 inset-x-0 z-[1000] transition-all duration-300 ${
-        isScrolled ? 'py-3.5 bg-[#160e40]/85 backdrop-blur-xl shadow-lg border-b border-white/5' : 'py-6 bg-transparent'
+        // OPTIMIZACIÓN MÓVIL #2: Sin desenfoque en móviles, fondo 98% opaco
+        isScrolled ? 'py-3.5 bg-[#160e40]/98 md:bg-[#160e40]/85 md:backdrop-blur-xl shadow-lg border-b border-white/5' : 'py-6 bg-transparent'
       }`}
       role="navigation"
       aria-label="Main Navigation"
@@ -290,7 +294,8 @@ function HeroSection() {
       >
         <source src="Diseño sin título(2).mp4" type="video/mp4" />
       </video>
-      <div className="absolute inset-0 bg-gradient-to-tr from-[#160e40]/90 via-[#251964]/80 to-[#3e2ca6]/70 mix-blend-multiply z-10" />
+      {/* OPTIMIZACIÓN MÓVIL #1: Opacidad sólida base y mix-blend exclusivo para pantallas md en adelante */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-[#160e40]/95 via-[#251964]/90 to-[#3e2ca6]/85 md:mix-blend-multiply z-10" />
       
       <div className="container mx-auto px-6 text-center relative z-20 max-w-4xl">
         <motion.h1 
