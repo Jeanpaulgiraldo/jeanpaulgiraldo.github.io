@@ -12,7 +12,7 @@
     --text-main: #1d1d1f;
     --text-muted: #86868b;
     --accent-vivid: #0071e3; 
-    --neon-green: #34c759;
+    --neon-green: #251964;;
 }
 
 html, body {
@@ -68,7 +68,6 @@ html, body {
    STRUCTURED NAVIGATION COMPONENTS
    ========================================================================== */
 .navbar {
-    /* OPTIMIZACIÓN MÓVIL #1: Color sólido en móviles, sin blur */
     background-color: rgba(22, 14, 64, 0.98) !important; 
     border-bottom: 1px solid rgba(255,255,255,0.05);
     transition: padding 0.3s ease;
@@ -79,7 +78,6 @@ html, body {
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
 }
 
-/* Activar blur solo en pantallas grandes (Desktop) */
 @media (min-width: 992px) {
     .navbar {
         background-color: rgba(22, 14, 64, 0.85) !important; 
@@ -104,7 +102,7 @@ html, body {
 .nav-link:hover { color: white !important; }
 
 /* ==========================================================================
-   CORE HERO TOPOLOGY & VIDEO OPTIMIZATION (TONO EXACTO #3E2CA6)
+   CORE HERO TOPOLOGY & VIDEO OPTIMIZATION
    ========================================================================== */
 .hero-section {
     color: white;
@@ -135,7 +133,6 @@ html, body {
     opacity: 1 !important; 
 }
 
-/* CAPA 1: TINTE DE COLOR EXACTO */
 .hero-overlay {
     position: absolute;
     top: 0;
@@ -143,11 +140,9 @@ html, body {
     width: 100%;
     height: 100%;
     z-index: 1;
-    /* OPTIMIZACIÓN MÓVIL #2: Tinte sólido con opacidad en móviles */
     background-color: rgba(62, 44, 166, 0.85);
 }
 
-/* Activar mix-blend-mode avanzado solo en Desktop */
 @media (min-width: 992px) {
     .hero-overlay {
         background-color: #3e2ca6;
@@ -155,7 +150,6 @@ html, body {
     }
 }
 
-/* CAPA 2: VIÑETA RADIAL CON TU COLOR */
 .hero-section::before {
     content: '';
     position: absolute;
@@ -195,17 +189,23 @@ html, body {
     white-space: nowrap; 
     width: max-content; 
     animation: scrollMarquee 25s linear infinite; 
-    /* OPTIMIZACIÓN MÓVIL #3: Aceleración por Hardware forzada */
     will-change: transform;
     transform: translateZ(0);
 }
 .marquee-content span { font-size: 1.2rem; font-weight: 700; letter-spacing: 2px; margin: 0 30px; }
 @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
+/* INTERACCIÓN: Botones Principales (Se hunden al clic) */
 .btn-apple-primary { background-color: white; color: var(--primary-brand); border-radius: 980px; padding: 12px 28px; font-size: 17px; font-weight: 600; border: none; text-decoration: none; transition: all 0.3s ease; display: inline-block; cursor: pointer; }
 .btn-apple-primary:hover { background-color: #f0f0f0; transform: translateY(-2px); }
 .btn-apple-secondary { background-color: transparent; color: white; border-radius: 980px; padding: 11px 28px; font-size: 17px; font-weight: 400; border: 1px solid rgba(255,255,255,0.6); text-decoration: none; transition: all 0.3s ease; display: inline-block; cursor: pointer;}
-.btn-apple-secondary:hover { background-color: white; color: var(--primary-brand); }
+.btn-apple-secondary:hover { background-color: white; color: var(--primary-brand); transform: translateY(-2px); }
+
+.btn-apple-primary:active, 
+.btn-apple-secondary:active { 
+    transform: scale(0.96); 
+    transition: all 0.1s; 
+}
 
 /* ==========================================================================
    FLOATING ACTION BAR INTERFACE
@@ -215,7 +215,6 @@ html, body {
     bottom: 30px; 
     left: 50%; 
     transform: translateX(-50%) translateY(120px);
-    /* OPTIMIZACIÓN MÓVIL #4: Sin blur, fondo completamente opaco */
     background: rgba(255, 255, 255, 0.98); 
     border: 2px solid rgba(22, 14, 64, 0.2);
     border-radius: 980px; 
@@ -244,7 +243,6 @@ html, body {
 .mobbin-fab a.primary-action { font-weight: 600; border: 1.5px solid var(--primary-brand); color: var(--primary-brand); }
 .mobbin-fab .fab-divider { width: 1px; height: 22px; background-color: rgba(22, 14, 64, 0.2); margin: 0 6px; }
 
-/* Invertir colores en Desktop cuando no es modo oscuro (solo aplica si tiene blur) */
 @media (min-width: 992px) {
     .mobbin-fab a { color: #ffffff; }
     .mobbin-fab a.primary-action { border-color: rgba(255, 255, 255, 0.7); color: #ffffff; }
@@ -257,7 +255,7 @@ html, body {
 }
 
 /* ==========================================================================
-   STRUCTURAL PREMIUM UI INTERACTIVE CARDS (SPECULAR GLOW)
+   STRUCTURAL PREMIUM UI INTERACTIVE CARDS
    ========================================================================== */
 .apple-card { 
     background: var(--surface-color); 
@@ -273,7 +271,6 @@ html, body {
 .apple-card:hover { box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06); }
 .card-icon { font-size: 2.5rem; color: var(--primary-brand); margin-bottom: 20px; display: inline-block; transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
 
-/* Capa de Reflejo de Luz Dinámica (Specular Glow Effect) */
 @media (min-width: 992px) {
     .apple-card::before {
         content: '';
@@ -300,7 +297,7 @@ html, body {
 }
 
 /* ==========================================================================
-   BADGES CON FÍSICAS DE REBOTE ELÁSTICO
+   BADGES (LENGUAJES, INFRAESTRUCTURA) - EFECTO ÉXITO VERDE INTEGRADO
    ========================================================================== */
 .skill-badge { 
     background-color: #f5f5f7; 
@@ -313,20 +310,68 @@ html, body {
     display: inline-block; 
     opacity: 0; 
     transform: scale(0.8); 
-    transition: opacity 0.4s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) !important; 
+    cursor: pointer; /* Hace que el cursor cambie a manito */
+    /* Transición suave para color, fondo y transformaciones físicas */
+    transition: opacity 0.4s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease !important; 
 }
-.skill-badge.pop-active { opacity: 1; transform: scale(1); }
+
+.skill-badge.pop-active { 
+    opacity: 1; 
+    transform: scale(1); 
+}
+
+/* Efecto Verde de Éxito al pasar el mouse */
+.skill-badge:hover {
+    background-color: var(--neon-green) !important;
+    color: white !important;
+    transform: scale(1.08) translateY(-2px) !important; 
+    box-shadow: 0 8px 20px rgba(37, 25, 100, 0.3) !important;
+}
+
+/* Efecto de hundimiento al clic */
+.skill-badge:active {
+    transform: scale(0.95) !important;
+    transition: all 0.1s !important;
+}
 
 /* ==========================================================================
    FILTERS & DASHBOARDS
    ========================================================================== */
 .mobbin-filters { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 2.5rem; }
+
 .filter-pill { 
-    background-color: var(--bg-color); color: var(--text-muted); border: 1px solid rgba(0,0,0,0.05); 
-    border-radius: 980px; padding: 8px 20px; font-size: 0.9rem; font-weight: 600; 
-    transition: all 0.2s ease; cursor: pointer;
+    background-color: var(--bg-color); 
+    color: var(--text-muted); 
+    border: 1px solid rgba(0,0,0,0.05); 
+    border-radius: 980px; 
+    padding: 8px 20px; 
+    font-size: 0.9rem; 
+    font-weight: 600; 
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); 
+    cursor: pointer;
 }
-.filter-pill.active { background-color: var(--primary-brand); color: white; border-color: var(--primary-brand); }
+
+/* Filtros no activos también reciben el efecto Verde de Éxito */
+.filter-pill:hover:not(.active) { 
+    background-color: var(--neon-green); 
+    color: white; 
+    border-color: var(--neon-green);
+    transform: translateY(-2px) scale(1.05); 
+    box-shadow: 0 8px 20px rgba(71, 19, 214, 0.3); 
+}
+
+.filter-pill.active { 
+    background-color: var(--primary-brand); 
+    color: white; 
+    border-color: var(--primary-brand); 
+    box-shadow: 0 4px 15px rgba(37, 25, 100, 0.3); 
+}
+
+/* Hundimiento al clic */
+.filter-pill:active { 
+    transform: scale(0.94); 
+    transition: all 0.1s;
+}
 
 .project-item { transition: opacity 0.3s ease, transform 0.3s ease; }
 .project-item.hide { display: none !important; opacity: 0; }
@@ -370,7 +415,32 @@ html, body {
 .reveal.active, .reveal-left.active, .reveal-right.active, .reveal-scale.active { opacity: 1; transform: translate(0) scale(1); }
 
 footer { background-color: var(--primary-dark); color: white; border-top: 1px solid rgba(0,0,0,0.05); padding-bottom: 100px !important; }
-.social-link { width: 50px; height: 50px; line-height: 48px; display: inline-block; border-radius: 50%; border: 1px solid rgba(255,255,255,0.2); color: white; font-size: 1.2rem; transition: all 0.2s ease; text-decoration: none; margin: 0 10px; }
+
+/* INTERACCIÓN: Botones Sociales (Levitación Gravitacional) */
+.social-link { 
+    width: 50px; 
+    height: 50px; 
+    line-height: 48px; 
+    display: inline-block; 
+    border-radius: 50%; 
+    border: 1px solid rgba(255,255,255,0.2); 
+    color: white; 
+    font-size: 1.2rem; 
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); 
+    text-decoration: none; 
+    margin: 0 10px; 
+}
+.social-link:hover { 
+    background-color: white; 
+    color: var(--primary-dark); 
+    transform: translateY(-5px) scale(1.1); 
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2); 
+    border-color: white;
+}
+.social-link:active { 
+    transform: translateY(0) scale(0.9); 
+    transition: all 0.1s;
+}
 
 /* ==========================================================================
    RESPONSIVE LAYOUT GUARDRAILS
@@ -397,4 +467,25 @@ footer { background-color: var(--primary-dark); color: white; border-top: 1px so
 }
 .navbar-toggler { border: none !important; box-shadow: none !important; }
 .navbar-toggler-icon { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='%23ffffff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.5' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") !important; }
+
+/* ==========================================================================
+   CLASE UTILITARIA GLOBAL: EFECTO ÉXITO (VERDE NEÓN)
+   ========================================================================== */
+.hover-efecto-verde {
+    transition: background-color 0.4s ease, color 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease !important;
+}
+
+.hover-efecto-verde:hover {
+    background-color: var(--neon-green) !important; /* El verde de Apple */
+    color: white !important;
+    border-color: var(--neon-green) !important;
+    transform: scale(1.05) translateY(-2px) !important; /* Se eleva un poco */
+    box-shadow: 0 10px 25px rgba(122, 6, 231, 0.35) !important; /* Resplandor verde */
+}
+
+.hover-efecto-verde:active {
+    transform: scale(0.95) !important; /* Se hunde al clic */
+    transition: all 0.1s !important;
+}
+
 
