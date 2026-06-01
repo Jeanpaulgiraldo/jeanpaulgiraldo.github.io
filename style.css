@@ -298,7 +298,6 @@ html, body {
     body:not(.dark-context) .mobbin-fab .fab-divider { background-color: rgba(22, 14, 64, 0.2); }
     body:not(.dark-context) .mobbin-fab a.primary-action { border-color: var(--primary-brand); color: var(--primary-brand); }
 }
-
 /* ==========================================================================
    STRUCTURAL PREMIUM UI INTERACTIVE CARDS
    ========================================================================== */
@@ -532,4 +531,6 @@ footer { background-color: var(--primary-dark); color: white; border-top: 1px so
     transform: scale(0.95) !important; /* Se hunde al clic */
     transition: all 0.1s !important;
 }
+
+
 
