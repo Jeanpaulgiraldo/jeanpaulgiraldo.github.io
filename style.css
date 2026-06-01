@@ -145,7 +145,6 @@ html, body {
 
 @media (min-width: 992px) {
     .hero-overlay {
-        background-color: #3e2ca6;
         mix-blend-mode: color; 
     }
 }
