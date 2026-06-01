@@ -235,7 +235,7 @@ function HeroSection() {
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden bg-black text-white">
       <video 
-        autoPlay loop muted playsInline preload="auto"
+        autoPlay loop muted playsInline preload="metadata" 
         className="absolute inset-0 w-full h-full object-cover opacity-40 z-0"
       >
         <source src="Diseño sin título(2).mp4" type="video/mp4" />
@@ -332,6 +332,9 @@ function AboutSection({ isDesktop }) {
               <img 
                 src="Jeanpaulgiraldo.png" 
                 alt="Jean Paul Giraldo - Cloud Infrastructure Track" 
+                width="280"
+                height="280"
+                decoding="async"
                 className="w-full h-full object-cover"
                 loading="lazy"
               />
@@ -427,7 +430,6 @@ function TechnicalCore() {
 }
 
 function ProjectCenter({ activeFilter, setActiveFilter, projects }) {
-  // FUNCIÓN NUEVA: Rastrea el ratón y le envía las coordenadas a tu CSS
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -437,7 +439,6 @@ function ProjectCenter({ activeFilter, setActiveFilter, projects }) {
   };
 
   return (
-    // NUEVO: Convertimos la section en motion.section y añadimos whileInView
     <motion.section 
       id="projects" 
       className="py-32 bg-white"
@@ -474,9 +475,9 @@ function ProjectCenter({ activeFilter, setActiveFilter, projects }) {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.3, delay: index * 0.05 }} // <-- NUEVO: Efecto cascada
+                transition={{ duration: 0.3, delay: index * 0.05 }} 
                 key={project.id}
-                onMouseMove={handleMouseMove} // <-- NUEVO: Activamos el resplandor 3D
+                onMouseMove={handleMouseMove} 
                 className="apple-card bg-white rounded-3xl border border-neutral-100 p-8 shadow-sm flex flex-col justify-between group hover:shadow-xl transition-all duration-300"
               >
                 <div>
