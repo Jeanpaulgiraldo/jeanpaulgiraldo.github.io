@@ -430,6 +430,7 @@ function TechnicalCore() {
 }
 
 function ProjectCenter({ activeFilter, setActiveFilter, projects }) {
+  // FUNCIÓN: Manejador de coordenadas para el efecto resplandor 3D
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -477,7 +478,7 @@ function ProjectCenter({ activeFilter, setActiveFilter, projects }) {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.3, delay: index * 0.05 }} 
                 key={project.id}
-                onMouseMove={handleMouseMove} 
+                onMouseMove={handleMouseMove} // <-- El enlace al CSS que genera el Glow
                 className="apple-card bg-white rounded-3xl border border-neutral-100 p-8 shadow-sm flex flex-col justify-between group hover:shadow-xl transition-all duration-300"
               >
                 <div>
@@ -495,7 +496,7 @@ function ProjectCenter({ activeFilter, setActiveFilter, projects }) {
       </div>
     </motion.section>
   );
-}
+}             
 
 function SystemsDeployment() {
   return (
