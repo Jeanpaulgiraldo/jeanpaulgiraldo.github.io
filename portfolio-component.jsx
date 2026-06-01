@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
 
-// --- TYPE DEFINITIONS & SCHEMAS ---
+// ==========================================================================
+// 1. CAPA DE DATOS (Aislada de la lógica de renderizado)
+// ==========================================================================
 const PROJECT_REGISTRY = [
   {
     id: 'p1',
@@ -43,65 +45,45 @@ const SKILL_MATRIX = {
   methodology: ['UI/UX Layouts', 'Generative AI', 'E-commerce Ops', 'Cybersecurity']
 };
 
-function GlobalStyleSheet() {
-  return (
-    <style dangerouslySetInnerHTML={{
-      __html: `
-        @keyframes marqueeScroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .animate-marquee-infinite {
-          display: flex;
-          width: max-content;
-          animation: marqueeScroll 25s linear infinite;
-          /* OPTIMIZACIÓN MÓVIL #3: Aceleración por Hardware forzada */
-          will-change: transform;
-          transform: translateZ(0);
-        }
-        @keyframes textShineEffect {
-          from { background-position: 0% center; }
-          to { background-position: 200% center; }
-        }
-        .animate-text-shine {
-          background-size: 200% auto;
-          animation: textShineEffect 4s linear infinite;
-        }
-        .blink-cursor::after {
-          content: '|';
-          animation: cursorBlink 1s step-end infinite;
-          margin-left: 4px;
-        }
-        @keyframes cursorBlink {
-          from, to { color: transparent; }
-          50% { color: currentColor; }
-        }
-      `
-    }} />
-  );
-}
-
-// --- MAIN PORTFOLIO ROOT COMPONENT ---
+// ==========================================================================
+// 2. MAIN PORTFOLIO ROOT COMPONENT
+// ==========================================================================
 function PortfolioRoot() {
   const [isLoading, setIsLoading] = useState(true);
   const [activeFilter, setActiveFilter] = useState('all');
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
 
+  // TRACKING: Inicialización segura de Google Analytics 4
   useEffect(() => {
-    // Media Query Guard for Performance Protection
+    const trackingId = "G-XXXXXXXXXX"; // <-- REEMPLAZA CON TU ID REAL
+    
+    const scriptGoogle = document.createElement('script');
+    scriptGoogle.async = true;
+    scriptGoogle.src = `https://www.googletagmanager.com/gtag/js?id=${trackingId}`;
+    document.head.appendChild(scriptGoogle);
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    
+    gtag('js', new Date());
+    gtag('config', trackingId);
+
+    return () => {
+      if (document.head.contains(scriptGoogle)) document.head.removeChild(scriptGoogle);
+    };
+  }, []);
+
+  // EVENTOS: Configuración estructural de interfaz
+  useEffect(() => {
     const mq = window.matchMedia("(min-width: 992px)");
     setIsDesktop(mq.matches);
     const listener = (e) => setIsDesktop(e.matches);
     mq.addEventListener('change', listener);
     
-    // Core Web Vitals Optimization: Structural Scroll Tracking via Passive Listener
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll, { passive: true });
     
-    // Simulated Asset Load Deconstruction
     const timer = setTimeout(() => setIsLoading(false), 600);
     
     return () => {
@@ -111,7 +93,6 @@ function PortfolioRoot() {
     };
   }, []);
 
-  // Memory Efficient O(1) Projection Matrix for Dynamic Filtering
   const filteredProjects = useMemo(() => {
     if (activeFilter === 'all') return PROJECT_REGISTRY;
     return PROJECT_REGISTRY.filter(project => project.category === activeFilter);
@@ -119,8 +100,7 @@ function PortfolioRoot() {
 
   return (
     <div className="min-h-screen bg-[#fbfbfd] text-[#1d1d1f] font-sans antialiased selection:bg-[#251964]/30 selection:text-[#251964]">
-      <GlobalStyleSheet />
-
+      
       <AnimatePresence>
         {isLoading && <SkeletonLoader />}
       </AnimatePresence>
@@ -149,7 +129,10 @@ function PortfolioRoot() {
   );
 }
 
-// --- HARDWARE-ACCELERATED PRE-RENDER SKELETON ---
+// ==========================================================================
+// 3. SUB-COMPONENTES DE INTERFAZ
+// ==========================================================================
+
 function SkeletonLoader() {
   return (
     <motion.div 
@@ -168,7 +151,6 @@ function SkeletonLoader() {
   );
 }
 
-// --- SUB-SEC INTERPOLATED CURSOR REGISTRY (Desktop Only) ---
 function CustomCursorEngine() {
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
@@ -200,12 +182,10 @@ function CustomCursorEngine() {
   );
 }
 
-// --- ENTERPRISE APP-BAR ---
 function GlobalNavigationBar({ isScrolled }) {
   return (
     <nav 
       className={`fixed top-0 inset-x-0 z-[1000] transition-all duration-300 ${
-        // OPTIMIZACIÓN MÓVIL #2: Sin desenfoque en móviles, fondo 98% opaco
         isScrolled ? 'py-3.5 bg-[#160e40]/98 md:bg-[#160e40]/85 md:backdrop-blur-xl shadow-lg border-b border-white/5' : 'py-6 bg-transparent'
       }`}
       role="navigation"
@@ -231,7 +211,7 @@ function GlobalNavigationBar({ isScrolled }) {
               {item.label}
             </a>
           ))}
-          <a href="#contact" className="px-5 py-2 rounded-full bg-white text-[#251964] text-sm font-semibold hover:bg-[#f0f0f0] transition-all transform hover:-translate-y-0.5">
+          <a href="#contact" className="px-5 py-2 rounded-full bg-white text-[#251964] text-sm font-semibold hover:bg-[#f0f0f0] transition-all transform hover:-translate-y-0.5 hover-efecto-verde">
             Contact
           </a>
         </div>
@@ -240,61 +220,26 @@ function GlobalNavigationBar({ isScrolled }) {
   );
 }
 
-// --- HERO SCENARIO INTERFACE ---
+// OPTIMIZADO: Eliminado el setTimout que saturaba la memoria
 function HeroSection() {
-  const [typedText, setTypedText] = useState('');
-  const loopWords = useMemo(() => ["Cloud Architecture.", "AWS Data Security.", "Business Intelligence.", "Smart Industry AI."], []);
+  const loopWords = ["Cloud Architecture.", "AWS Data Security.", "Business Intelligence.", "Smart Industry AI."];
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
 
   useEffect(() => {
-    let currentWordIndex = 0;
-    let currentCharIndex = 0;
-    let isDeleting = false;
-    let typingTimeout;
-
-    const typeSequence = () => {
-      const currentWord = loopWords[currentWordIndex];
-
-      if (!isDeleting) {
-        setTypedText(currentWord.substring(0, currentCharIndex + 1));
-        currentCharIndex += 1;
-
-        if (currentCharIndex === currentWord.length) {
-          isDeleting = true;
-          typingTimeout = setTimeout(typeSequence, 2000);
-        } else {
-          typingTimeout = setTimeout(typeSequence, 60);
-        }
-      } else {
-        currentCharIndex -= 1;
-        setTypedText(currentWord.substring(0, currentCharIndex));
-
-        if (currentCharIndex === 0) {
-          isDeleting = false;
-          currentWordIndex = (currentWordIndex + 1) % loopWords.length;
-          typingTimeout = setTimeout(typeSequence, 400);
-        } else {
-          typingTimeout = setTimeout(typeSequence, 30);
-        }
-      }
-    };
-
-    typingTimeout = setTimeout(typeSequence, 300);
-    return () => clearTimeout(typingTimeout);
-  }, [loopWords]);
+    const interval = setInterval(() => {
+      setCurrentWordIndex((prev) => (prev + 1) % loopWords.length);
+    }, 3500);
+    return () => clearInterval(interval);
+  }, [loopWords.length]);
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden bg-black text-white">
       <video 
-        autoPlay 
-        loop 
-        muted 
-        playsInline 
-        preload="auto"
+        autoPlay loop muted playsInline preload="auto"
         className="absolute inset-0 w-full h-full object-cover opacity-40 z-0"
       >
         <source src="Diseño sin título(2).mp4" type="video/mp4" />
       </video>
-      {/* OPTIMIZACIÓN MÓVIL #1: Opacidad sólida base y mix-blend exclusivo para pantallas md en adelante */}
       <div className="absolute inset-0 bg-gradient-to-tr from-[#160e40]/95 via-[#251964]/90 to-[#3e2ca6]/85 md:mix-blend-multiply z-10" />
       
       <div className="container mx-auto px-6 text-center relative z-20 max-w-4xl">
@@ -306,6 +251,7 @@ function HeroSection() {
         >
           Jean Paul Giraldo
         </motion.h1>
+        
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -314,8 +260,21 @@ function HeroSection() {
         >
           Data & Product Engineer. <br />
           <span className="font-light opacity-75">Specializing in </span>
-          <span className="font-bold blink-cursor text-white">{typedText}</span>
+          
+          <AnimatePresence mode="wait">
+            <motion.span
+              key={currentWordIndex}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+              className="font-bold text-white inline-block"
+            >
+              {loopWords[currentWordIndex]}
+            </motion.span>
+          </AnimatePresence>
         </motion.h2>
+
         <motion.div 
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -334,7 +293,6 @@ function HeroSection() {
   );
 }
 
-// --- OPTIMIZED ROW SCROLLER (MARQUEE) ---
 function MarqueeBanner() {
   return (
     <div className="w-full bg-[#251964] text-white/90 py-4 overflow-hidden relative z-30 select-none -mt-10 -rotate-2 scale-[1.02] shadow-2xl">
@@ -352,7 +310,6 @@ function MarqueeBanner() {
   );
 }
 
-// --- PARALLAX PROFILE MATRICES (ABOUT) ---
 function AboutSection({ isDesktop }) {
   const targetRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -405,7 +362,6 @@ function AboutSection({ isDesktop }) {
   );
 }
 
-// --- TECHNICAL INTERACTION BLOCKS ---
 function TechnicalCore() {
   return (
     <section id="skills" className="py-32 bg-[#fbfbfd]">
@@ -417,7 +373,7 @@ function TechnicalCore() {
             <h5 className="font-bold text-lg text-[#251964] mb-4">Languages</h5>
             <div className="flex flex-wrap gap-2">
               {SKILL_MATRIX.languages.map((skill) => (
-                <span key={skill} className="bg-[#f5f5f7] text-[#251964] text-xs font-semibold px-3 py-1.5 rounded-full">{skill}</span>
+                <span key={skill} className="bg-[#f5f5f7] text-[#251964] text-xs font-semibold px-3 py-1.5 rounded-full hover-efecto-verde transition-all">{skill}</span>
               ))}
             </div>
           </div>
@@ -427,7 +383,7 @@ function TechnicalCore() {
             <h5 className="font-bold text-lg text-[#251964] mb-4">Infrastructure</h5>
             <div className="flex flex-wrap gap-2">
               {SKILL_MATRIX.infrastructure.map((skill) => (
-                <span key={skill} className="bg-[#f5f5f7] text-[#251964] text-xs font-semibold px-3 py-1.5 rounded-full">{skill}</span>
+                <span key={skill} className="bg-[#f5f5f7] text-[#251964] text-xs font-semibold px-3 py-1.5 rounded-full hover-efecto-verde transition-all">{skill}</span>
               ))}
             </div>
           </div>
@@ -437,7 +393,7 @@ function TechnicalCore() {
             <h5 className="font-bold text-lg text-[#251964] mb-4">Methodology</h5>
             <div className="flex flex-wrap gap-2">
               {SKILL_MATRIX.methodology.map((skill) => (
-                <span key={skill} className="bg-[#f5f5f7] text-[#251964] text-xs font-semibold px-3 py-1.5 rounded-full">{skill}</span>
+                <span key={skill} className="bg-[#f5f5f7] text-[#251964] text-xs font-semibold px-3 py-1.5 rounded-full hover-efecto-verde transition-all">{skill}</span>
               ))}
             </div>
           </div>
@@ -470,10 +426,26 @@ function TechnicalCore() {
   );
 }
 
-// --- PROJECT DISPLAY PIPELINES ---
 function ProjectCenter({ activeFilter, setActiveFilter, projects }) {
+  // FUNCIÓN NUEVA: Rastrea el ratón y le envía las coordenadas a tu CSS
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
+    e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
+  };
+
   return (
-    <section id="projects" className="py-32 bg-white">
+    // NUEVO: Convertimos la section en motion.section y añadimos whileInView
+    <motion.section 
+      id="projects" 
+      className="py-32 bg-white"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+    >
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16 space-y-4">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-[#160e40]">Production Environments.</h2>
@@ -485,7 +457,7 @@ function ProjectCenter({ activeFilter, setActiveFilter, projects }) {
                 className={`px-6 py-2 rounded-full text-sm font-semibold tracking-wide transition-all ${
                   activeFilter === type
                     ? 'bg-[#251964] text-white shadow-lg'
-                    : 'bg-[#fbfbfd] text-[#86868b] border border-neutral-200/60 hover:bg-neutral-50'
+                    : 'bg-[#fbfbfd] text-[#86868b] border border-neutral-200/60 hover:bg-neutral-50 hover-efecto-verde'
                 }`}
               >
                 {type === 'all' ? 'All Specs' : type === 'data' ? 'Data & DB' : type === 'software' ? 'Software Eng' : 'Strategy & UX'}
@@ -496,15 +468,16 @@ function ProjectCenter({ activeFilter, setActiveFilter, projects }) {
 
         <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <AnimatePresence mode="popLayout">
-            {projects.map((project) => (
+            {projects.map((project, index) => (
               <motion.div
                 layout
-                initial={{ opacity: 0, scale: 0.95 }}
+                initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.3 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3, delay: index * 0.05 }} // <-- NUEVO: Efecto cascada
                 key={project.id}
-                className="bg-white rounded-3xl border border-neutral-100 p-8 shadow-sm flex flex-col justify-between group hover:shadow-xl transition-all duration-300"
+                onMouseMove={handleMouseMove} // <-- NUEVO: Activamos el resplandor 3D
+                className="apple-card bg-white rounded-3xl border border-neutral-100 p-8 shadow-sm flex flex-col justify-between group hover:shadow-xl transition-all duration-300"
               >
                 <div>
                   <div className="w-12 h-12 rounded-xl bg-[#251964]/5 flex items-center justify-center text-[#251964] text-xl mb-6">
@@ -519,18 +492,17 @@ function ProjectCenter({ activeFilter, setActiveFilter, projects }) {
           </AnimatePresence>
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 
-// --- CLOUD DEPLOYMENTS & FEEDBACK ARCHITECTURE ---
 function SystemsDeployment() {
   return (
     <section id="cases" className="py-32 bg-[#fbfbfd]">
       <div className="max-w-7xl mx-auto px-6">
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-[#160e40] text-center mb-16">Systems Deployment.</h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div className="bg-white border border-neutral-100 rounded-3xl p-8 shadow-sm space-y-4">
+          <div className="apple-card bg-white border border-neutral-100 rounded-3xl p-8 shadow-sm space-y-4">
             <div className="flex items-center gap-4">
               <i className="fas fa-shopping-cart text-3xl text-[#251964]" />
               <h4 className="font-bold text-xl text-[#160e40]">E-commerce Automation & BI Engine</h4>
@@ -544,7 +516,7 @@ function SystemsDeployment() {
             </div>
           </div>
 
-          <div className="bg-white border border-neutral-100 rounded-3xl p-8 shadow-sm space-y-4">
+          <div className="apple-card bg-white border border-neutral-100 rounded-3xl p-8 shadow-sm space-y-4">
             <div className="flex items-center gap-4">
               <i className="fas fa-user-shield text-3xl text-[#251964]" />
               <h4 className="font-bold text-xl text-[#160e40]">AquaCity Cyber Audit Infrastructure</h4>
@@ -588,7 +560,6 @@ function SystemsDeployment() {
   );
 }
 
-// --- LOGISTICAL TRACKS & CREDENTIALS ---
 function ExperienceTrack() {
   return (
     <section id="experience" className="py-32 bg-white">
@@ -635,7 +606,6 @@ function ExperienceTrack() {
   );
 }
 
-// --- NAVIGATION NAVIGATION CAPTURE BANNER ---
 function FloatingActionBar() {
   return (
     <div className="mobbin-fab fixed bottom-[30px] left-1/2 -translate-x-1/2 flex items-center gap-1.5 p-2 bg-white/90 shadow-xl border border-neutral-200/50 rounded-full z-[1000] transition-all duration-300">
@@ -652,7 +622,6 @@ function FloatingActionBar() {
   );
 }
 
-// --- TERMINAL ANCHOR (FOOTER) ---
 function FooterSection() {
   return (
     <footer id="contact" className="bg-[#160e40] text-white/60 py-24 text-center border-t border-white/5">
@@ -668,7 +637,7 @@ function FooterSection() {
           <a href="https://github.com/Jeanpaulgiraldo" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white text-base hover:bg-white hover:text-[#160e40] transition-all duration-200" aria-label="GitHub Profile">
             <i className="fab fa-github" />
           </a>
-          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=analisisjeanpaul@gmail.com" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white text-base hover:bg-white hover:text-[#160e40] transition-all duration-200" aria-label="Email Contact">
+          <a href="mailto:analisisjeanpaul@gmail.com" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white text-base hover:bg-white hover:text-[#160e40] transition-all duration-200" aria-label="Email Contact">
             <i className="fas fa-envelope" />
           </a>
         </div>
