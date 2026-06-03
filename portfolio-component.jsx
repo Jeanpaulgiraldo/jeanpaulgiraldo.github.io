@@ -236,12 +236,12 @@ function HeroSection() {
     // Agregamos bg-[#160e40] para que los móviles vean tu color azul oscuro de fondo
     <section className="relative h-screen flex items-center justify-center overflow-hidden bg-[#160e40] text-white">
       
-      <video 
+      <<video 
         autoPlay loop muted playsInline 
         className="absolute inset-0 w-full h-full object-cover opacity-40 z-0 bg-[#160e40]"
       >
-        {/* El media query bloquea celulares, y el H.264 optimizado vuela en computadoras */}
-        <source src="Diseño sin título(2).mp4" type="video/mp4" media="(min-width: 768px)" />
+        {/* LA MAGIA: Esta línea salva al celular y le da el video a la PC */}
+        <source src=""Diseño sin título(2).mp4" type="video/mp4" media="(min-width: 768px)" />
       </video>
       <div className="absolute inset-0 bg-gradient-to-tr from-[#160e40]/95 via-[#251964]/90 to-[#3e2ca6]/85 md:mix-blend-multiply z-10" />
       
