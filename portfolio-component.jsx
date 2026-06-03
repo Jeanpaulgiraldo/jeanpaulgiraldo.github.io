@@ -233,13 +233,17 @@ function HeroSection() {
   }, [loopWords.length]);
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-black text-white">
+    // Agregamos bg-[#160e40] para que los móviles vean tu color azul oscuro de fondo
+    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-[#160e40] text-white">
+      
       <video 
-        autoPlay loop muted playsInline preload="metadata" 
+        autoPlay loop muted playsInline 
         className="absolute inset-0 w-full h-full object-cover opacity-40 z-0"
       >
-        <source src="Diseño sin título(2).mp4" type="video/mp4" />
+        {/* LA SOLUCIÓN: El atributo media bloquea la descarga en celulares, pero la permite en PC */}
+        <source src="Diseño sin título(2).mp4" type="video/mp4" media="(min-width: 768px)" />
       </video>
+
       <div className="absolute inset-0 bg-gradient-to-tr from-[#160e40]/95 via-[#251964]/90 to-[#3e2ca6]/85 md:mix-blend-multiply z-10" />
       
       <div className="container mx-auto px-6 text-center relative z-20 max-w-4xl">
