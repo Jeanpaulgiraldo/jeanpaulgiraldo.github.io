@@ -10,7 +10,7 @@ const PROJECT_REGISTRY = [
     category: 'data',
     title: 'Alumni DB System',
     subtitle: 'BD_Gestiondeengresados',
-    description: 'Architected a comprehensive relational SQL Server database structure mapping institutional graduate nodes with strict validation rules.',
+    description: 'Architected a comprehensive relational SQL database structure mapping institutional graduate nodes with strict validation rules.',
     icon: 'fa-database'
   },
   {
@@ -18,7 +18,7 @@ const PROJECT_REGISTRY = [
     category: 'ux',
     title: 'Automotive Marketing Integration',
     subtitle: 'Digital Performance Analytics',
-    description: 'Engineered a multi-channel deployment framework resulting in 70k impressions, 640 metrics interactions, and 25 conversion leads.',
+    description: 'Engineered a multi-channel deployment  resulting in 70k impressions, 640 metrics interactions, and 25 conversion leads.',
     icon: 'fa-chart-line'
   },
   {
@@ -26,7 +26,7 @@ const PROJECT_REGISTRY = [
     category: 'ux',
     title: 'Zero Waste App Profile',
     subtitle: 'UI/UX & Design Sprint Protocols',
-    description: 'Engineered full interface flows, system maps, constraint frameworks, and systemic functional test matrices.',
+    description: 'Engineered full interface flows, system maps, constraint , and systemic functional test matrices.',
     icon: 'fa-leaf'
   },
   {
@@ -358,7 +358,7 @@ function AboutSection({ isDesktop }) {
                 <div className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-[#251964]" /> Cloud Security Matrices</div>
                 <div className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-[#251964]" /> Large Language Pipelines</div>
                 <div className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-[#251964]" /> Business Intelligence Systems</div>
-                <div className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-[#251964]" /> Pipeline Integrity Analytics</div>
+                <div className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-[#251964]" /> Integrity Analytics</div>
               </div>
             </div>
           </div>
@@ -513,7 +513,7 @@ function SystemsDeployment() {
               <h4 className="font-bold text-xl text-[#160e40]">E-commerce Automation & BI Engine</h4>
             </div>
             <p className="text-xs font-semibold text-[#251964]">Applied Architecture: Low-latency execution models for structural scalability</p>
-            <p className="text-sm text-[#86868b] leading-relaxed">Design and systemic deployment of high-throughput structures optimizing system states while eliminating functional transactional drift. Integrates normalized data backends to eliminate stock concurrency errors alongside automated transaction pipelines powered by n8n nodes.</p>
+            <p className="text-sm text-[#86868b] leading-relaxed">Design and systemic deployment of high-throughput structures optimizing system states while eliminating functional transactional drift. Integrates normalized data backends to eliminate stock concurrency errors alongside automated transaction  powered .</p>
             <hr className="border-neutral-100" />
             <div className="flex justify-between text-xs text-[#86868b] font-medium">
               <span><i className="fas fa-bolt mr-1" /> Sub-millisecond TTFB Caching</span>
@@ -526,7 +526,7 @@ function SystemsDeployment() {
               <i className="fas fa-user-shield text-3xl text-[#251964]" />
               <h4 className="font-bold text-xl text-[#160e40]">AquaCity Cyber Audit Infrastructure</h4>
             </div>
-            <p className="text-xs font-semibold text-[#251964]">System Framework Compliance: ISO 27001 & ISO 27032 Compliance Matrices</p>
+            <p className="text-xs font-semibold text-[#251964]">System Compliance: ISO 27001 & ISO 27032 Compliance Matrices</p>
             <p className="text-sm text-[#86868b] leading-relaxed">Development of an enterprise risk mitigation control matrix and access logical control architectures for automated operational technology topologies. Engineered to secure sensitive nodes, remediate vulnerability vectors, and sanitize data paths at endpoints.</p>
             <hr className="border-neutral-100" />
             <div className="flex justify-between text-xs text-[#86868b] font-medium">
@@ -539,7 +539,7 @@ function SystemsDeployment() {
         <h4 className="font-bold text-2xl text-center text-[#160e40] mt-24 mb-12">Peer System Evaluations</h4>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="bg-[#f5f5f7] rounded-3xl p-8 space-y-6">
-            <p className="text-base text-[#1d1d1f] italic leading-relaxed">"The technical infrastructure implemented by Jean Paul resolved continuous state synchronization lags across our data pipelines. System throughput and programmatic edge handling significantly increased retention thresholds."</p>
+            <p className="text-base text-[#1d1d1f] italic leading-relaxed">"The technical infrastructure implemented by Jean Paul resolved continuous state synchronization lags across our data. System throughput and programmatic edge handling significantly increased retention thresholds."</p>
             <div className="flex items-center gap-4">
               <div className="w-11 h-11 rounded-full bg-[#251964] text-white flex items-center justify-center font-bold text-sm">EM</div>
               <div>
