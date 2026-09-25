@@ -628,32 +628,34 @@ function FloatingActionBar() {
 }
 
 // ==========================================================================
-// MÓDULO DE TRANSMISIÓN FAAS (FooterSection Refactorizado)
+// MÓDULO DE TRANSMISIÓN FAAS (Arquitectura Restful Strict)
 // ==========================================================================
 function FooterSection() {
-  // 1. Capa de Estado: Mutación de UI basada en red (aislada de los inputs)
-  const [formState, setFormState] = useState({ status: 'idle', message: '' }); // idle | loading | success | error
+  const [formState, setFormState] = useState({ status: 'idle', message: '' }); 
 
-  // 2. Controlador de Eventos y Red (Inversión de Control)
   const handleTransmission = async (e) => {
-    e.preventDefault(); // Evita la recarga síncrona y la destrucción del estado del SPA
+    e.preventDefault(); // Detiene cualquier intento de navegación nativa
     const form = e.target;
     
     setFormState({ status: 'loading', message: '' });
 
     try {
-      // Serialización nativa sin harness (Cero re-renders durante el typeo)
       const payload = new FormData(form);
 
-      const response = await fetch(form.action, {
+      // Endpoint desacoplado inyectando la ruta /ajax/ (Obligatorio para React/Fetch)
+      const endpoint = 'https://formsubmit.co/ajax/analisisjeanpaul@gmail.com';
+
+      const response = await fetch(endpoint, {
         method: 'POST',
         body: payload,
-        headers: { 'Accept': 'application/json' }
+        headers: { 
+            'Accept': 'application/json' 
+        }
       });
 
       if (response.ok) {
         setFormState({ status: 'success', message: 'Transmisión exitosa. Conexión establecida.' });
-        form.reset(); // Limpieza nativa del DOM
+        form.reset(); 
       } else {
         throw new Error('Server edge rejection');
       }
@@ -666,7 +668,6 @@ function FooterSection() {
     <footer id="contact" className="bg-[#160e40] text-white/60 py-24 text-center border-t border-white/5 relative z-10">
       <div className="max-w-4xl mx-auto px-6 space-y-16">
         
-        {/* Cabecera Estructural */}
         <div className="space-y-4">
           <h2 className="text-3xl font-bold tracking-tight text-white">Initialize Technical Integration.</h2>
           <p className="max-w-lg mx-auto text-sm text-white/70 leading-relaxed">
@@ -674,17 +675,11 @@ function FooterSection() {
           </p>
         </div>
 
-        {/* CAPA DE FORMULARIO DESACOPLADO (UI + Handler) */}
         <div className="max-w-md mx-auto bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-md shadow-2xl text-left">
-          <form 
-            action="https://formsubmit.co/analisisjeanpaul@gmail.com" 
-            method="POST" 
-            onSubmit={handleTransmission}
-            className="space-y-5"
-          >
-            {/* Guardrails de Infraestructura FaaS & Honeypot */}
+          {/* El formulario ya NO tiene action ni method. Solo delega el evento a React */}
+          <form onSubmit={handleTransmission} className="space-y-5">
+            
             <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_next" value="" />
             <input type="text" name="_honey" style={{ display: 'none' }} tabIndex="-1" autoComplete="off" />
 
             <div>
@@ -719,7 +714,6 @@ function FooterSection() {
               {formState.status === 'loading' ? 'Transmitting...' : 'Execute Transmission'}
             </button>
 
-            {/* Mutación condicional del DOM para feedback utilizando Framer Motion */}
             <AnimatePresence>
               {formState.message && (
                 <motion.div 
@@ -735,7 +729,6 @@ function FooterSection() {
           </form>
         </div>
 
-        {/* Nodos de Salida */}
         <div className="space-y-6">
           <div className="flex justify-center gap-4">
             <a href="https://www.linkedin.com/in/jean-paul-giraldo-6b59a5275/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white text-base hover:bg-white hover:text-[#160e40] transition-all duration-200" aria-label="LinkedIn Profile">
