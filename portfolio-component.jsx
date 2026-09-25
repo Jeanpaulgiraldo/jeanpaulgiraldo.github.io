@@ -651,5 +651,128 @@ function FooterSection() {
     </footer>
   );
 }
+// ==========================================================================
+// MÓDULO DE TRANSMISIÓN FAAS (FooterSection Refactorizado)
+// ==========================================================================
+function FooterSection() {
+  // 1. Capa de Estado: Mutación de UI basada en red (aislada de los inputs)
+  const [formState, setFormState] = useState({ status: 'idle', message: '' }); // idle | loading | success | error
 
+  // 2. Controlador de Eventos y Red (Inversión de Control)
+  const handleTransmission = async (e) => {
+    e.preventDefault(); // Evita la recarga síncrona y la destrucción del estado del SPA
+    const form = e.target;
+    
+    setFormState({ status: 'loading', message: '' });
+
+    try {
+      // Serialización nativa sin harness (Cero re-renders durante el typeo)
+      const payload = new FormData(form);
+
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: payload,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        setFormState({ status: 'success', message: 'Transmisión exitosa. Conexión establecida.' });
+        form.reset(); // Limpieza nativa del DOM
+      } else {
+        throw new Error('Server edge rejection');
+      }
+    } catch (error) {
+      setFormState({ status: 'error', message: 'Error de red. Utiliza mis enlaces directos.' });
+    }
+  };
+
+  return (
+    <footer id="contact" className="bg-[#160e40] text-white/60 py-24 text-center border-t border-white/5 relative z-10">
+      <div className="max-w-4xl mx-auto px-6 space-y-16">
+        
+        {/* Cabecera Estructural */}
+        <div className="space-y-4">
+          <h2 className="text-3xl font-bold tracking-tight text-white">Initialize Technical Integration.</h2>
+          <p className="max-w-lg mx-auto text-sm text-white/70 leading-relaxed">
+            Open to strategic roles in Software Engineering topologies, Data Infrastructure tracks, and high-throughput UI/UX environments.
+          </p>
+        </div>
+
+        {/* CAPA DE FORMULARIO DESACOPLADO (UI + Handler) */}
+        <div className="max-w-md mx-auto bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-md shadow-2xl text-left">
+          <form 
+            action="https://formsubmit.co/analisisjeanpaul@gmail.com" 
+            method="POST" 
+            onSubmit={handleTransmission}
+            className="space-y-5"
+          >
+            {/* Guardrails de Infraestructura FaaS & Honeypot */}
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_next" value="" />
+            <input type="text" name="_honey" style={{ display: 'none' }} tabIndex="-1" autoComplete="off" />
+
+            <div>
+              <label htmlFor="name" className="block text-xs font-bold text-[#8ab4f8] mb-2 uppercase tracking-wider">Identity Node</label>
+              <input 
+                type="text" name="nombre" id="name" required placeholder="Tu nombre o empresa"
+                className="w-full bg-[#0d0826] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/20 focus:outline-none focus:border-[#8ab4f8] focus:ring-1 focus:ring-[#8ab4f8] transition-all"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="email" className="block text-xs font-bold text-[#8ab4f8] mb-2 uppercase tracking-wider">Network Origin</label>
+              <input 
+                type="email" name="email" id="email" required placeholder="correo@dominio.com"
+                className="w-full bg-[#0d0826] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/20 focus:outline-none focus:border-[#8ab4f8] focus:ring-1 focus:ring-[#8ab4f8] transition-all"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="message" className="block text-xs font-bold text-[#8ab4f8] mb-2 uppercase tracking-wider">Payload</label>
+              <textarea 
+                name="mensaje" id="message" rows="4" required placeholder="Especifica la arquitectura de tu requerimiento..."
+                className="w-full bg-[#0d0826] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/20 focus:outline-none focus:border-[#8ab4f8] focus:ring-1 focus:ring-[#8ab4f8] transition-all resize-none"
+              ></textarea>
+            </div>
+
+            <button 
+              type="submit" 
+              disabled={formState.status === 'loading'}
+              className="w-full bg-white text-[#251964] font-bold text-sm py-3.5 rounded-xl hover:bg-neutral-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed transform hover:-translate-y-0.5 active:translate-y-0 shadow-lg"
+            >
+              {formState.status === 'loading' ? 'Transmitting...' : 'Execute Transmission'}
+            </button>
+
+            {/* Mutación condicional del DOM para feedback utilizando Framer Motion */}
+            <AnimatePresence>
+              {formState.message && (
+                <motion.div 
+                  initial={{ opacity: 0, y: -10 }} 
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className={`text-center text-sm font-bold mt-4 ${formState.status === 'success' ? 'text-[#34c759]' : 'text-[#ff3b30]'}`}
+                >
+                  {formState.message}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </form>
+        </div>
+
+        {/* Nodos de Salida */}
+        <div className="space-y-6">
+          <div className="flex justify-center gap-4">
+            <a href="https://www.linkedin.com/in/jean-paul-giraldo-6b59a5275/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white text-base hover:bg-white hover:text-[#160e40] transition-all duration-200" aria-label="LinkedIn Profile">
+              <i className="fab fa-linkedin-in" />
+            </a>
+            <a href="https://github.com/Jeanpaulgiraldo" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white text-base hover:bg-white hover:text-[#160e40] transition-all duration-200" aria-label="GitHub Profile">
+              <i className="fab fa-github" />
+            </a>
+          </div>
+          <p className="text-xs opacity-40">&copy; {new Date().getFullYear()} Jean Paul Giraldo. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  );
+}
 export default PortfolioRoot;
