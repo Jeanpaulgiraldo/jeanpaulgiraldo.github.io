@@ -627,30 +627,6 @@ function FloatingActionBar() {
   );
 }
 
-function FooterSection() {
-  return (
-    <footer id="contact" className="bg-[#160e40] text-white/60 py-24 text-center border-t border-white/5">
-      <div className="max-w-4xl mx-auto px-6 space-y-8">
-        <h2 className="text-3xl font-bold tracking-tight text-white">Initialize Technical Integration.</h2>
-        <p className="max-w-lg mx-auto text-sm text-white/70 leading-relaxed">
-          Open to strategic roles in Software Engineering topologies, Data Infrastructure tracks, and high-throughput UI/UX environments.
-        </p>
-        <div className="flex justify-center gap-4">
-          <a href="https://www.linkedin.com/in/jean-paul-giraldo-6b59a5275/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white text-base hover:bg-white hover:text-[#160e40] transition-all duration-200" aria-label="LinkedIn Profile">
-            <i className="fab fa-linkedin-in" />
-          </a>
-          <a href="https://github.com/Jeanpaulgiraldo" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white text-base hover:bg-white hover:text-[#160e40] transition-all duration-200" aria-label="GitHub Profile">
-            <i className="fab fa-github" />
-          </a>
-          <a href="mailto:analisisjeanpaul@gmail.com" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white text-base hover:bg-white hover:text-[#160e40] transition-all duration-200" aria-label="Email Contact">
-            <i className="fas fa-envelope" />
-          </a>
-        </div>
-        <p className="text-xs opacity-40">&copy; {new Date().getFullYear()} Jean Paul Giraldo. All rights reserved.</p>
-      </div>
-    </footer>
-  );
-}
 // ==========================================================================
 // MÓDULO DE TRANSMISIÓN FAAS (FooterSection Refactorizado)
 // ==========================================================================
