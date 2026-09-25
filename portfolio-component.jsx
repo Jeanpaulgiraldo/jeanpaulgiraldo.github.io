@@ -628,42 +628,9 @@ function FloatingActionBar() {
 }
 
 // ==========================================================================
-// MÓDULO DE TRANSMISIÓN FAAS (Arquitectura Restful Strict)
+// MÓDULO DE TRANSMISIÓN FAAS (Patrón Nativo Oficial con Retorno Controlado)
 // ==========================================================================
 function FooterSection() {
-  const [formState, setFormState] = useState({ status: 'idle', message: '' }); 
-
-  const handleTransmission = async (e) => {
-    e.preventDefault(); // Detiene cualquier intento de navegación nativa
-    const form = e.target;
-    
-    setFormState({ status: 'loading', message: '' });
-
-    try {
-      const payload = new FormData(form);
-
-      // Endpoint desacoplado inyectando la ruta /ajax/ (Obligatorio para React/Fetch)
-      const endpoint = 'https://formsubmit.co/ajax/analisisjeanpaul@gmail.com';
-
-      const response = await fetch(endpoint, {
-        method: 'POST',
-        body: payload,
-        headers: { 
-            'Accept': 'application/json' 
-        }
-      });
-
-      if (response.ok) {
-        setFormState({ status: 'success', message: 'Transmisión exitosa. Conexión establecida.' });
-        form.reset(); 
-      } else {
-        throw new Error('Server edge rejection');
-      }
-    } catch (error) {
-      setFormState({ status: 'error', message: 'Error de red. Utiliza mis enlaces directos.' });
-    }
-  };
-
   return (
     <footer id="contact" className="bg-[#160e40] text-white/60 py-24 text-center border-t border-white/5 relative z-10">
       <div className="max-w-4xl mx-auto px-6 space-y-16">
@@ -676,10 +643,23 @@ function FooterSection() {
         </div>
 
         <div className="max-w-md mx-auto bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-md shadow-2xl text-left">
-          {/* El formulario ya NO tiene action ni method. Solo delega el evento a React */}
-          <form onSubmit={handleTransmission} className="space-y-5">
+          
+          {/* Implementación nativa exacta según la documentación de FormSubmit */}
+          <form 
+            action="https://formsubmit.co/analisisjeanpaul@gmail.com" 
+            method="POST"
+            className="space-y-5"
+          >
             
+            {/* Parámetros avanzados indicados en la documentación oficial */}
             <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_subject" value="¡Nuevo mensaje desde tu Portafolio!" />
+            
+            {/* Redirección controlada de vuelta a tu propia página web tras el envío */}
+            <input type="hidden" name="_next" value="https://jeanpaulgiraldo.github.io/" />
+            
+            {/* Campo trampa anti-spam (Honeypot) */}
             <input type="text" name="_honey" style={{ display: 'none' }} tabIndex="-1" autoComplete="off" />
 
             <div>
@@ -691,7 +671,7 @@ function FooterSection() {
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-xs font-bold text-[#8ab4f8] mb-2 uppercase tracking-wider">Network Origin</label>
+              <label htmlFor="email" className="block text-xs font-bold text-[#8ab4f8] mb-2 uppercase tracking-wider">Network Origin (Email)</label>
               <input 
                 type="email" name="email" id="email" required placeholder="correo@dominio.com"
                 className="w-full bg-[#0d0826] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/20 focus:outline-none focus:border-[#8ab4f8] focus:ring-1 focus:ring-[#8ab4f8] transition-all"
@@ -708,24 +688,10 @@ function FooterSection() {
 
             <button 
               type="submit" 
-              disabled={formState.status === 'loading'}
-              className="w-full bg-white text-[#251964] font-bold text-sm py-3.5 rounded-xl hover:bg-neutral-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed transform hover:-translate-y-0.5 active:translate-y-0 shadow-lg"
+              className="w-full bg-white text-[#251964] font-bold text-sm py-3.5 rounded-xl hover:bg-neutral-200 transition-all transform hover:-translate-y-0.5 active:translate-y-0 shadow-lg cursor-pointer"
             >
-              {formState.status === 'loading' ? 'Transmitting...' : 'Execute Transmission'}
+              Execute Transmission
             </button>
-
-            <AnimatePresence>
-              {formState.message && (
-                <motion.div 
-                  initial={{ opacity: 0, y: -10 }} 
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  className={`text-center text-sm font-bold mt-4 ${formState.status === 'success' ? 'text-[#34c759]' : 'text-[#ff3b30]'}`}
-                >
-                  {formState.message}
-                </motion.div>
-              )}
-            </AnimatePresence>
           </form>
         </div>
 
