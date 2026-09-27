@@ -435,17 +435,24 @@
                         <!-- BOTÓN DE ENVÍO: Estilizado con los coloresd e marca y tipografía contrastada -->
                         <button type="submit" id="submitBtn" class="btn w-100 fw-bold py-3" style="background-color: #251964 ; color: #ffffff ; border-radius: 12px; transition: all 0.2s ease;">Send</button>
                         <div id="formStatus" style="display: none;" class="text-center mt-3 small fw-bold"></div>
-                            
+
+                        
                     </form>
                 </div>
             </div>
 
             <!-- ENLACES DE RED EXTERNA -->
-            <div class="d-flex justify-content-center mb-5 gap-3">
-                <a href="https://www.linkedin.com/in/jean-paul-giraldo-6b59a5275/" target="_blank" class="social-link" aria-label="LinkedIn Profile" style="color: #ffffff;"><i class="fab fa-linkedin-in fa-lg"></i></a>
-                <a href="https://github.com/Jeanpaulgiraldo" target="_blank" class="social-link" aria-label="GitHub Profile" style="color: #251964;"><i class="fab fa-github fa-lg"></i></a>
-           
-            </div>
+           <div class="d-flex justify-content-center mb-5 gap-3">
+    <!-- Nodo LinkedIn: Estado inicial blanco puro, transición fluida a azul interactivo -->
+    <a href="https://www.linkedin.com/in/jean-paul-giraldo-6b59a5275/" target="_blank" class="social-link text-decoration-none" aria-label="LinkedIn Profile" style="color: #ffffff; transition: color 0.3s ease;" onmouseover="this.style.color='#0077b5'" onmouseout="this.style.color='#ffffff'">
+        <i class="fab fa-linkedin-in fa-lg"></i>
+    </a>
+    
+    <!-- Nodo GitHub: Estado inicial blanco puro, transición fluida a azul interactivo -->
+    <a href="https://github.com/Jeanpaulgiraldo" target="_blank" class="social-link text-decoration-none" aria-label="GitHub Profile" style="color: #ffffff; transition: color 0.3s ease;" onmouseover="this.style.color='#3b82f6'" onmouseout="this.style.color='#ffffff'">
+        <i class="fab fa-github fa-lg"></i>
+    </a>
+</div>
             <p class="small" style="color: #86868b;">&copy; <span id="currentYear"></span> Jean Paul Giraldo. All rights reserved.</p>
         
     </div>
