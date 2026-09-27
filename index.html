@@ -399,46 +399,52 @@
             </div>
         </div>
     </section>
-<footer id="contact" class="py-5 text-center">
+<footer id="contact" class="py-5 text-center" style="background-color: #fbfbfd; color: #1d1d1f;">
         <div class="container py-4 reveal">
-            <h2 class="fw-bold mb-4">by Jean Paul Giraldo </h2>
-            <p class="text-light opacity-25 mb-4"> 2026 </p>
+            <h2 class="fw-bold mb-2" style="color: #160e40;">By Jean Paul Giraldo</h2>
+            <p class="mb-4" style="color: #86868b; font-weight: 500;">2026 — analisisjeanpaul@gmail.com</p>
             
-            <!-- MÓDULO DE TRANSMISIÓN DE DATOS (FaaS) -->
+            <!-- MÓDULO DE TRANSMISIÓN DE DATOS (FaaS - Enrutamiento Estabilizado) -->
             <div class="row justify-content-center mb-5">
                 <div class="col-lg-6 text-start">
-                         <form id="contactForm" action="//formsubmit.co/your@email.com" method="POST" class="apple-card p-4">
-                         
-                        <!-- Protocolos de Seguridad y Enrutamiento -->
+                    <!-- CORRECCIÓN DE ENDPOINT: Se reemplaza your@email.com por tu correo real de producción -->
+                    <form id="contactForm" action="https://formsubmit.co/analisisjeanpaul@gmail.com" method="POST" class="p-5 rounded-4 shadow-sm" style="background-color: #ffffff; border: 1px solid #e5e5ea;">
+                        
+                        <!-- Protocolos de Seguridad y Enrutamiento Oficiales -->
                         <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_next" value="">
+                        <!-- CORRECCIÓN DE RETORNO: URL absoluta obligatoria para evitar redirección permanente en formsubmit.co -->
+                        <input type="hidden" name="_next" value="https://jeanpaulgiraldo.github.io/">
+                        <input type="hidden" name="_subject" value="Nuevo contacto formal desde el Portafolio de Ingeniería">
+                        <input type="hidden" name="_template" value="table">
                         <input type="text" name="_honey" style="display:none">
 
                         <div class="mb-3">
-                            <label for="name" class="form-label text-brand small fw-bold">Identity Node (Nombre / Empresa)</label>
-                            <input type="text" name="nombre" id="name" class="form-control bg-dark text-light border-secondary" required placeholder="Ingresa tu nombre">
+                            <label for="name" class="form-label small fw-bold" style="color: #251964;">Identity Node (Nombre / Empresa)</label>
+                            <!-- UI AJUSTADA: Fondo blanco, texto y placeholder en color oscuro para alto contraste -->
+                            <input type="text" name="nombre" id="name" class="form-control" required placeholder="Ingresa tu nombre" style="background-color: #ffffff; color: #1d1d1f; border-color: #d1d1d6;">
                         </div>
                         <div class="mb-3">
-                            <label for="email" class="form-label text-brand small fw-bold">Network Origin (Email)</label>
-                            <input type="email" name="email" id="email" class="form-control bg-dark text-light border-secondary" required placeholder="correo@dominio.com">
+                            <label for="email" class="form-label small fw-bold" style="color: #251964;">Network Origin (Email)</label>
+                            <input type="email" name="email" id="email" class="form-control" required placeholder="correo@dominio.com" style="background-color: #ffffff; color: #1d1d1f; border-color: #d1d1d6;">
                         </div>
                         <div class="mb-4">
-                            <label for="message" class="form-label text-brand small fw-bold">Payload (Mensaje)</label>
-                            <textarea name="mensaje" id="message" class="form-control bg-dark text-light border-secondary" rows="4" required placeholder="Especifica los detalles técnicos o estratégicos..."></textarea>
+                            <label for="message" class="form-label small fw-bold" style="color: #251964;">Payload (Mensaje)</label>
+                            <textarea name="mensaje" id="message" class="form-control" rows="4" required placeholder="Especifica los detalles técnicos o estratégicos..." style="background-color: #ffffff; color: #1d1d1f; border-color: #d1d1d6;"></textarea>
                         </div>
                         
-                        <button type="submit" id="submitBtn" class="btn btn-outline-light w-100 fw-bold" style="border-radius: 8px;">Send</button>
+                        <!-- BOTÓN DE ENVÍO: Estilizado con los colores de tu marca y tipografía contrastada -->
+                        <button type="submit" id="submitBtn" class="btn w-100 fw-bold py-3" style="background-color: #251964; color: #ffffff; border-radius: 12px; transition: all 0.2s ease;">Send</button>
                         <div id="formStatus" style="display: none;" class="text-center mt-3 small fw-bold"></div>
                     </form>
                 </div>
             </div>
 
             <!-- ENLACES DE RED EXTERNA -->
-            <div class="d-flex justify-content-center mb-5">
-                <a href="https://www.linkedin.com/in/jean-paul-giraldo-6b59a5275/" target="_blank" class="social-link" aria-label="LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://github.com/Jeanpaulgiraldo" target="_blank" class="social-link" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
+            <div class="d-flex justify-content-center mb-5 gap-3">
+                <a href="https://www.linkedin.com/in/jean-paul-giraldo-6b59a5275/" target="_blank" class="social-link" aria-label="LinkedIn Profile" style="color: #251964;"><i class="fab fa-linkedin-in fa-lg"></i></a>
+                <a href="https://github.com/Jeanpaulgiraldo" target="_blank" class="social-link" aria-label="GitHub Profile" style="color: #251964;"><i class="fab fa-github fa-lg"></i></a>
             </div>
-            <p class="small text-light opacity-50 mb-0">&copy; <span id="currentYear"></span> Jean Paul Giraldo. All rights reserved.</p>
+            <p class="small" style="color: #86868b;">&copy; <span id="currentYear"></span> Jean Paul Giraldo. All rights reserved.</p>
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
