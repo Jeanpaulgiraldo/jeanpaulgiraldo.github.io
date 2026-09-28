@@ -531,5 +531,9 @@ footer { background-color: var(--primary-dark); color: white; border-top: 1px so
     transition: all 0.1s !important;
 }
 
+{
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css"/>
+
+}
 
 
