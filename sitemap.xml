@@ -1,0 +1,16 @@
+<!-- Metadatos Básicos y SEO -->
+<meta name="description" content="Portafolio de Jean Paul Giraldo. Ingeniería de software, telemetría B2B y arquitectura de datos. Soluciones de alto rendimiento.">
+<link rel="canonical" href="https://jeanpaulgiraldo.github.io/">
+
+<!-- Open Graph (LinkedIn / Facebook / Slack) -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jeanpaulgiraldo.github.io/">
+<meta property="og:title" content="Jean Paul Giraldo | End-to-End Software Engineer">
+<meta property="og:description" content="Arquitectura de software, telemetría B2B y Business Intelligence.">
+<meta property="og:image" content="https://jeanpaulgiraldo.github.io/jeanpaulgiraldo.jpg">
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Jean Paul Giraldo | Software Engineer">
+<meta name="twitter:description" content="Especialista en infraestructura web y calidad de datos.">
+<meta name="twitter:image" content="https://jeanpaulgiraldo.github.io/jeanpaulgiraldo.jpg">
