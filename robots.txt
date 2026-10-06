@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Declaración del Sitemap
+Sitemap: https://jeanpaulgiraldo.github.io/sitemap.xml
