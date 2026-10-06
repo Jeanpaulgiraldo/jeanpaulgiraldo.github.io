@@ -4,68 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>   Jean Paul Giraldo | End-to-End Software Engineer | Product Specialist</title>
-    <!-- Google ) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q50Z655TL"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-Q50Z6T55TL');
-</script>
+    <title>Jean Paul Giraldo | End-to-End Software Engineer | Product Specialist</title>
+    
+    <!-- 1. TELEMETRÍA: Google Analytics (ID Corregido) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q50Z655TL"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-Q50Z655TL');
+    </script>
+    
+    <!-- 2. LIBRERÍA: Intl Tel Input -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
-<script>
-    const input = document.querySelector("#phone");
-    window.intlTelInput(input, {
-        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js",
-        preferredCountries: ["co", "us", "mx"], // Países 
-        separateDialCode: true,                // Muestra el código de área separado de la bandera
-    });
-</script>
-<!-- clarity -->
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "ypm4h2ufwe");
-</script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const input = document.querySelector("#phone");
+            if(input) {
+                window.intlTelInput(input, {
+                    utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js",
+                    preferredCountries: ["co", "us", "mx"], 
+                    separateDialCode: true,                
+                });
+            }
+        });
+    </script>
+
+    <!-- 3. TELEMETRÍA: Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "ypm4h2ufwe");
+    </script>
+
+    <!-- 4. SEO Y METADATOS BÁSICOS -->
     <meta name="description" content="Professional portfolio of Jean Paul Giraldo, Software Engineer specialized in Data Quality, Business Intelligence, and advanced Generative AI implementation. High-performance infrastructures engineered for high conversion and product scalability.">
     <meta name="keywords" content="Jean Paul Giraldo, Software Engineer, Data Engineer, Cloud Computing, AWS, Google Cloud, IBM AI, Data Quality, Business Intelligence, SQL, ETL, SEO Optimization, Medellín, Colombia">
     <meta name="author" content="Jean Paul Giraldo">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://jeanpaulgiraldo.github.io/">
 
+    <!-- 5. OPEN GRAPH (LinkedIn, Facebook, Slack) -->
     <meta property="og:type" content="profile">
     <meta property="og:title" content="Jean Paul Giraldo | End-to-End Software Engineer">
-    <meta property="og:description" content="Developing resilient cloud infrastructures, intelligent process automation , and high-performance frontend conversion modules optimized for systemic SEO execution.">
+    <meta property="og:description" content="Developing resilient cloud infrastructures, intelligent process automation, and high-performance frontend conversion modules optimized for systemic SEO execution.">
     <meta property="og:image" content="https://jeanpaulgiraldo.github.io/Jeanpaulgiraldo.png">
     <meta property="og:url" content="https://jeanpaulgiraldo.github.io/">
     <meta property="og:site_name" content="Jean Paul Giraldo Portfolio">
 
+    <!-- 6. TWITTER CARDS -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Jean Paul Giraldo | End-to-End Software Engineer">
     <meta name="twitter:description" content="Specialist in smart automation matrices and high-throughput data infrastructures. Certified by AWS, Google, and IBM.">
     <meta name="twitter:image" content="https://jeanpaulgiraldo.github.io/Jeanpaulgiraldo.png">
 
+    <!-- 7. RECURSOS Y ESTILOS -->
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
-    
     <link rel="stylesheet" href="style.css">
-    
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
 
+    <!-- 8. SCHEMA.ORG (JSON-LD UNIFICADO, SIN DUPLICADOS Y CON URLS LIMPIAS) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "Jean Paul Giraldo - End-to-End Software Engineer",
+      "@type": "Person",
+      "name": "Jean Paul Giraldo",
+      "jobTitle": "Software Engineer & Data Quality Specialist",
       "image": "https://jeanpaulgiraldo.github.io/Jeanpaulgiraldo.png",
-      "description": "Specialized in Product Engineering, automated, programma tic SEO enhancement, and enterprise Data Quality within multi-cloud topologies.",
+      "description": "Arquitecto de software especializado en infraestructura web, telemetría y Business Intelligence.",
       "url": "https://jeanpaulgiraldo.github.io/",
       "sameAs": [
         "https://www.linkedin.com/in/jean-paul-giraldo-6b59a5275/",
@@ -189,7 +200,6 @@
                             <span class="skill-badge">Java</span><span class="skill-badge">Hcl</span>
                             <span class="skill-badge">Scala</span><span class="skill-badge">Node.js</span>
                             <span class="skill-badge">GraphQL</span><span class="skill-badge">Rust</span>
-                            
                         </div>
                     </div>
                 </div>
@@ -208,7 +218,7 @@
                 <div class="col-md-4 reveal">
                     <div class="apple-card">
                         <i class="fas fa-lightbulb card-icon" aria-hidden="true"></i>
-                        <h5 class="fw-bold mb-4 text-brand">Specializations
+                        <h5 class="fw-bold mb-4 text-brand">Specializations</h5>
                         <div>
                             <span class="skill-badge"> Data Science</span><span class="skill-badge">Generative AI</span>
                             <span class="skill-badge">E-commerce Ops</span><span class="skill-badge">Cybersecurity</span>
@@ -262,7 +272,7 @@
                         <i class="fas fa-database card-icon" aria-hidden="true"></i>
                         <h5 class="fw-bold mb-2">Alumni DB System</h5>
                         <p class="text-muted-apple small mb-3">BD_Gestiondeengresados</p>
-                        <p class="small mb-0">Architected a comprehensive relational SQL  database structure mapping institutional graduate nodes.</p>
+                        <p class="small mb-0">Architected a comprehensive relational SQL database structure mapping institutional graduate nodes.</p>
                     </div>
                 </div>
                 <div id="p2" class="col-md-6 col-lg-3 reveal-scale project-item" data-category="ux">
@@ -304,7 +314,7 @@
                             <h4 class="fw-bold mb-0">E-commerce Automation & BI Engine</h4>
                         </div>
                         <p class="text-muted-apple small mb-3">Applied Architecture: Low-latency execution models for structural conversion scalability</p>
-                        <p class="small">Design and systemic deployment of high-throughput structures optimizing system states while eliminating functional transactional drift. Integrates normalized data backends to eliminate stock concurrency errors alongside automated transaction  powered  nodes.</p>
+                        <p class="small">Design and systemic deployment of high-throughput structures optimizing system states while eliminating functional transactional drift. Integrates normalized data backends to eliminate stock concurrency errors alongside automated transaction powered nodes.</p>
                         <hr class="opacity-10">
                         <div class="d-flex justify-content-between text-muted small">
                             <span><i class="fas fa-bolt me-1"></i> Sub-millisecond TTFB Caching</span>
@@ -318,7 +328,7 @@
                             <i class="fas fa-user-shield fs-2 text-brand"></i>
                             <h4 class="fw-bold mb-0">AquaCity Cyber Audit Infrastructure</h4>
                         </div>
-                        <p class="text-muted-apple small mb-3">System  Compliance: ISO 27001 & ISO 27032 Compliance Matrices</p>
+                        <p class="text-muted-apple small mb-3">System Compliance: ISO 27001 & ISO 27032 Compliance Matrices</p>
                         <p class="small">Development of an enterprise risk mitigation control matrix and access logical control architectures for automated operational technology topologies. Engineered to secure sensitive nodes, remediate vulnerability vectors, and sanitize data paths at endpoints.</p>
                         <hr class="opacity-10">
                         <div class="d-flex justify-content-between text-muted small">
@@ -365,16 +375,14 @@
                 <div class="col-lg-6 mb-5 mb-lg-0 reveal-left">
                     <h2 class="section-title text-start mb-5">Professional Track.</h2>
                     <div class="mb-4 ps-3 border-start border-3" style="border-color: var(--primary-brand) !important;">
-                        <h5 class="fw-bold mb-1">Operations Manager & Visual Designer |  (14 Years of Experience)</h5>
+                        <h5 class="fw-bold mb-1">Operations Manager & Visual Designer | (14 Years of Experience)</h5>
                         <p class="text-brand fw-bold mb-2"> Drews </p>
                         <p class="color-text-dark">Orchestrated system logistics, standardized transactional operational assets, and optimized structural visual environments to scale transaction paths.</p>
                     </div>
-                        <div class="mb-4 ps-3 border-start border-3" style="border-color: var(--primary-brand) !important;">
-                        <h5 class="fw-bold mb-1">Senior Graphic Designer (Freelance) |  (10 Years of Experience) </h5>
+                    <div class="mb-4 ps-3 border-start border-3" style="border-color: var(--primary-brand) !important;">
+                        <h5 class="fw-bold mb-1">Senior Graphic Designer (Freelance) | (10 Years of Experience) </h5>
                         <p class="text-brand fw-bold mb-2">(Freelance)</p>
-                        <p class="color-text-dark">With 10 years of professional experience, spearheaded comprehensive brand creation and corporate identity development through advanced graphic design strategies. 
-                            Directed the art and visual execution of high-impact advertising campaigns, aligning the aesthetic narrative with high-conversion transactional architectures. 
-                            Synergistically optimized graphic assets and customized catalog design structures to capture consumer intent vectors and drive digital growth.</p>
+                        <p class="color-text-dark">With 10 years of professional experience, spearheaded comprehensive brand creation and corporate identity development through advanced graphic design strategies. Directed the art and visual execution of high-impact advertising campaigns, aligning the aesthetic narrative with high-conversion transactional architectures. Synergistically optimized graphic assets and customized catalog design structures to capture consumer intent vectors and drive digital growth.</p>
                     </div>
                     <div class="mb-4 ps-3 border-start border-3" style="border-color: var(--primary-brand) !important;">
                         <h5 class="fw-bold mb-1">E-commerce Specialist & Brand Strategist | (10 Years of Experience)</h5>
@@ -416,7 +424,7 @@
                                     <li>Course to Web Development: HTML Al</li>
                                     <li>Intruduction to Generative Al</li>
                                     <li>AWS Cloud Fundamentals</li>
-                                    <li>Business Electronics< </li>
+                                    <li>Business Electronics</li>
                                     <li>Mkt- Business Intelligence (Pascual Bravo)</li>
                                     <li>AWS Advanced Gen AI</li>
                                 </ul>
@@ -427,69 +435,63 @@
             </div>
         </div>
     </section>
-                <footer id="contact" class="py-5 text-center" style="background-color: #160e40; color: #1d1d1f;">
-                <div class="container py-4 reveal">
-                    <h2 class="fw-bold mb-2" style="color: #ffffff;">by Jean Paul Giraldo</h2>
-                    <p class="mb-4" style="color: #86868b; font-weight: 500;">Technological Solutions</p>
-                    
-                    <!-- MÓDULO DE TRANSMISIÓN DE DATOS (FaaS - Enrutamiento Blindado por Token _to) -->
-                    <div class="row justify-content-center mb-5">
-                        <div class="col-lg-6 text-start">
-                            <form id="contactForm" action="https://formsubmit.co/analisisjeanpaul@gmail.com" method="POST" class="p-5 rounded-4 shadow-sm" style="background-color: #ffffff; border: 1px solid #e5e5ea;" autocomplete="off">
-                                
-                                <!-- Protocolos de Seguridad, Enrutamiento y Blindaje de Buzón -->
-                                <input type="hidden" name="_captcha" value="false">
-                                <input type="hidden" name="_next" value="https://jeanpaulgiraldo.github.io/">
-                                <input type="hidden" name="_subject" value="Nuevo contacto formal desde el Portafolio de Ingeniería">
-                                <input type="hidden" name="_template" value="table">
-                                
-                                <!-- BLINDAJE CRÍTICO: Forze el destino absoluto a nivel de payload para evitar desvíos del Gateway -->
-                                <input type="hidden" name="_to" value="analisisjeanpaul@gmail.com">
-                                
-                                <input type="text" name="_honey" style="display:none" autocomplete="off">
+
+    <footer id="contact" class="py-5 text-center" style="background-color: #160e40; color: #1d1d1f;">
+        <div class="container py-4 reveal">
+            <h2 class="fw-bold mb-2" style="color: #ffffff;">by Jean Paul Giraldo</h2>
+            <p class="mb-4" style="color: #86868b; font-weight: 500;">Technological Solutions</p>
             
-                                <div class="mb-3">
-                                    <label for="name" class="form-label small fw-bold" style="color: #251964;">Identity Node (Nombre / Empresa)</label>
-                                    <input type="text" name="nombre" id="name" class="form-control" required placeholder="Ingresa tu nombre" autocomplete="name" style="background-color: #ffffff; color: #1d1d1f; border-color: #d1d1d6;">
-                                </div>
-                                
-                                <div class="mb-3">
-                                    <label for="email" class="form-label small fw-bold" style="color: #251964;">Network Origin (Email)</label>
-                                    <input type="email" name="email" id="email" class="form-control" required placeholder="correo@dominio.com" autocomplete="off" style="background-color: #ffffff; color: #1d1d1f; border-color: #d1d1d6;">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="phone" class="form-label small fw-bold" style="color: #251964;">Phone Number</label>
-                                <div class="input-group">
-                                    <!-- El input donde  aplicar la librería de banderas -->
-                                    <input type="tel" name="telefono" id="phone" class="form-control" required placeholder="Ingresa tu número" autocomplete="tel" style="background-color: #ffffff; color: #1d1d1f; border-color: #d1d1d6;">
-                                </div>
-                                </div>        
-                                <div class="mb-4">
-                                    <label for="message" class="form-label small fw-bold" style="color: #251964;">Payload (Mensaje)</label>
-                                    <textarea name="mensaje" id="message" class="form-control" rows="4" required placeholder="Especifica los detalles técnicos o estratégicos..." autocomplete="off" style="background-color: #ffffff; color: #1d1d1f; border-color: #d1d1d6;"></textarea>
-                                </div>
-                                
-                                <!-- BOTÓN DE ENVÍO -->
-                                <button type="submit" id="submitBtn" class="btn w-100 fw-bold py-3" style="background-color: #251964; color: #ffffff; border-radius: 12px; transition: all 0.2s ease;">Send</button>
-                                <div id="formStatus" style="display: none;" class="text-center mt-3 small fw-bold"></div>
-                            </form>
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-6 text-start">
+                    <form id="contactForm" action="https://formsubmit.co/analisisjeanpaul@gmail.com" method="POST" class="p-5 rounded-4 shadow-sm" style="background-color: #ffffff; border: 1px solid #e5e5ea;" autocomplete="off">
+                        
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="https://jeanpaulgiraldo.github.io/">
+                        <input type="hidden" name="_subject" value="Nuevo contacto formal desde el Portafolio de Ingeniería">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_to" value="analisisjeanpaul@gmail.com">
+                        <input type="text" name="_honey" style="display:none" autocomplete="off">
+    
+                        <div class="mb-3">
+                            <label for="name" class="form-label small fw-bold" style="color: #251964;">Identity Node (Nombre / Empresa)</label>
+                            <input type="text" name="nombre" id="name" class="form-control" required placeholder="Ingresa tu nombre" autocomplete="name" style="background-color: #ffffff; color: #1d1d1f; border-color: #d1d1d6;">
                         </div>
-                    </div>
-            
-                    <!-- ENLACES DE RED EXTERNA CON EFECTO HOVER -->
-                    <div class="d-flex justify-content-center mb-5 gap-3">
-                        <a href="https://www.linkedin.com/in/jean-paul-giraldo-6b59a5275/" target="_blank" class="social-link text-decoration-none" aria-label="LinkedIn Profile" style="color: #ffffff; transition: color 0.3s ease;" onmouseover="this.style.color='#251964'" onmouseout="this.style.color='#ffffff'">
-                            <i class="fab fa-linkedin-in fa-lg"></i>
-                        </a>
-                
-                        <a href="https://github.com/Jeanpaulgiraldo" target="_blank" class="social-link text-decoration-none" aria-label="GitHub Profile" style="color: #ffffff; transition: color 0.3s ease;" onmouseover="this.style.color='#251964'" onmouseout="this.style.color='#ffffff'">
-                            <i class="fab fa-github fa-lg"></i>
-                        </a>
-                    </div>
-                    
-                    <p class="small" style="color: #86868b;">&copy; <span id="currentYear"></span> Jean Paul Giraldo. All rights reserved.</p>
+                        
+                        <div class="mb-3">
+                            <label for="email" class="form-label small fw-bold" style="color: #251964;">Network Origin (Email)</label>
+                            <input type="email" name="email" id="email" class="form-control" required placeholder="correo@dominio.com" autocomplete="off" style="background-color: #ffffff; color: #1d1d1f; border-color: #d1d1d6;">
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label small fw-bold" style="color: #251964;">Phone Number</label>
+                            <div class="input-group">
+                                <input type="tel" name="telefono" id="phone" class="form-control" required placeholder="Ingresa tu número" autocomplete="tel" style="background-color: #ffffff; color: #1d1d1f; border-color: #d1d1d6;">
+                            </div>
+                        </div>        
+                        <div class="mb-4">
+                            <label for="message" class="form-label small fw-bold" style="color: #251964;">Payload (Mensaje)</label>
+                            <textarea name="mensaje" id="message" class="form-control" rows="4" required placeholder="Especifica los detalles técnicos o estratégicos..." autocomplete="off" style="background-color: #ffffff; color: #1d1d1f; border-color: #d1d1d6;"></textarea>
+                        </div>
+                        
+                        <button type="submit" id="submitBtn" class="btn w-100 fw-bold py-3" style="background-color: #251964; color: #ffffff; border-radius: 12px; transition: all 0.2s ease;">Send</button>
+                        <div id="formStatus" style="display: none;" class="text-center mt-3 small fw-bold"></div>
+                    </form>
                 </div>
-            </footer>
+            </div>
+    
+            <div class="d-flex justify-content-center mb-5 gap-3">
+                <a href="https://www.linkedin.com/in/jean-paul-giraldo-6b59a5275/" target="_blank" class="social-link text-decoration-none" aria-label="LinkedIn Profile" style="color: #ffffff; transition: color 0.3s ease;" onmouseover="this.style.color='#251964'" onmouseout="this.style.color='#ffffff'">
+                    <i class="fab fa-linkedin-in fa-lg"></i>
+                </a>
+        
+                <a href="https://github.com/Jeanpaulgiraldo" target="_blank" class="social-link text-decoration-none" aria-label="GitHub Profile" style="color: #ffffff; transition: color 0.3s ease;" onmouseover="this.style.color='#251964'" onmouseout="this.style.color='#ffffff'">
+                    <i class="fab fa-github fa-lg"></i>
+                </a>
+            </div>
+            
+            <p class="small" style="color: #86868b;">&copy; <span id="currentYear"></span> Jean Paul Giraldo. All rights reserved.</p>
+        </div>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
     
     <script>
@@ -497,7 +499,6 @@
             
             const isDesktop = window.matchMedia("(min-width: 992px)").matches;
 
-            // 1. LENIS KINETIC SMOOTH SCROLL ROUTINE
             const lenis = new Lenis({
                 duration: 1.0,
                 easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -512,7 +513,6 @@
             }
             requestAnimationFrame(raf);
 
-            // 2. PARALLAX DOM MATRIX MODULATION (Desktop Restricted)
             const parallaxImg = document.getElementById('parallax-img');
             if (parallaxImg && isDesktop) {
                 lenis.on('scroll', (e) => {
@@ -520,7 +520,6 @@
                 });
             }
 
-            // 3. ASYNCHRONOUS TYPEWRITER MACHINE LOGIC
             const mainTitleElement = document.getElementById('main-title-type');
             const typeWriterElement = document.getElementById('typewriter');
             const heroButtons = document.getElementById('hero-buttons');
@@ -579,7 +578,6 @@
             
             setTimeout(typeMainTitle, 300); 
 
-            // 4. PERSPECTIVE TRANSLATION MATRICES & SPECULAR MOUSE LIGHT TRACKING
             if (isDesktop) {
                 const cards = document.querySelectorAll('.apple-card');
                 cards.forEach(card => {
@@ -600,7 +598,6 @@
                 });
             }
 
-            // ASYNCHRONOUS HERO VIDEO LOAD STATE GUARDRAIL
             const heroBgVideo = document.getElementById('hero-bg-video');
             if (heroBgVideo) {
                 if (heroBgVideo.readyState >= 3) {
@@ -612,7 +609,6 @@
                 }
             }
 
-            // 5. NAV & FAB VISIBILITY MANAGERS (Passive Scroll Trackers)
             const navbar = document.getElementById('mainNav');
             const fab = document.getElementById('floatingActionBar');
             const footer = document.getElementById('contact');
@@ -641,7 +637,6 @@
                 footerObserver.observe(footer);
             }
 
-            // 6. HIGH-PERFORMANCE INTERSECTION OBSERVER FOR DOM REVEAL SEQUENCES
             const revealElements = document.querySelectorAll(".reveal, .reveal-left, .reveal-right, .reveal-scale");
             const revealOnScroll = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
@@ -657,7 +652,6 @@
 
             revealElements.forEach(el => revealOnScroll.observe(el));
 
-            // 7. IN-VIEW CHAR PARSING STRING EMULATOR (ABOUT SECTION)
             const parrafosEscribir = document.querySelectorAll('.escribir-automatico');
             const observerParrafos = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
@@ -688,7 +682,6 @@
                 observerParrafos.observe(p);
             });
 
-            // 8. O(1) COMPLEXITY IN-MEMORY DATA STORAGE MAP MATRIX
             const projectMap = new Map();
             document.querySelectorAll('.project-item').forEach(item => {
                 projectMap.set(item.id, {
@@ -722,7 +715,6 @@
                 });
             });
 
-            // 9. HIGH-FREQ CURSOR TRACKING MATRIX (Desktop Only)
             if (isDesktop) {
                 const cursor = document.querySelector('.custom-cursor');
                 const follower = document.querySelector('.custom-cursor-follower');
@@ -745,7 +737,6 @@
                 });
             }
 
-            // 10. LOADER NODE TEARDOWN SEQUENCE
             const loader = document.getElementById('skeleton-loader');
             if (loader) {
                 loader.style.opacity = '0';
@@ -756,26 +747,6 @@
             const currentYearEl = document.getElementById('currentYear');
             if(currentYearEl) currentYearEl.textContent = new Date().getFullYear();
         });
-        <!-- Schema.org Markup  -->
-            <script type="application/ld+json">
-            {
-              "@context": "https://schema.org/",
-              "@type": "Person",
-              "name": "Jean Paul Giraldo",
-              "jobTitle": "Software Engineer & Data Quality Specialist",
-              "image": "https://jeanpaulgiraldo.github.io/Jeanpaulgiraldo.png",
-              "description": "Arquitecto de software especializado en infraestructura web, telemetría y Business Intelligence.",
-              "url": "https://jeanpaulgiraldo.github.io/",
-              "knowsAbout": ["Core Web Vitals", "Software Engineering", "Business Intelligence", "ETL Pipelines", "Data Quality", "Generative AI"],
-              "alumniOf": {
-                "@type": "EducationalOrganization",
-                "name": "Institución Universitaria Pascual Bravo"
-              },
-              "sameAs": [
-                "https://www.linkedin.com/in/jean-paul-giraldo-6b59a5275/jeanpaulgiraldo.png",
-                "https://github.com/Jeanpaulgiraldo/jeanpaulgiraldo.png"
-              ]
-            }
-            </script>
+    </script>
 </body>
 </html>
